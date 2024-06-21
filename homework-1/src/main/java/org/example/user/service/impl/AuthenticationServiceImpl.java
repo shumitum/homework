@@ -3,18 +3,16 @@ package org.example.user.service.impl;
 import org.example.context.ApplicationContext;
 import org.example.user.model.User;
 import org.example.user.repository.UserRepository;
+import org.example.user.service.AuthenticationService;
 
 import java.util.Scanner;
 
-public class AuthenticationServiceImpl {
+public class AuthenticationServiceImpl implements AuthenticationService {
 
     private User authorizedUser;
     private final UserRepository userRepository = ApplicationContext.getInstance().getUserRepository();
 
-    public User getAuthorizedUser() {
-        return authorizedUser;
-    }
-
+    @Override
     public void authenticateUser() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите имя пользователя:");
@@ -31,11 +29,16 @@ public class AuthenticationServiceImpl {
         }
     }
 
+    @Override
     public String getAuthorizedUserName() {
         if (authorizedUser != null) {
             return authorizedUser.getUserName();
         } else {
             return "Пользователь не авторизован";
         }
+    }
+    @Override
+    public boolean checkAuthorizedUserExistence() {
+        return authorizedUser != null;
     }
 }

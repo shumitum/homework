@@ -5,10 +5,11 @@ import org.example.user.repository.UserRepository;
 
 import java.util.Scanner;
 
-public class RegistrationServiceImpl {
+public class RegistrationServiceImpl implements org.example.user.service.RegistrationService {
 
     private final UserRepository userRepository = ApplicationContext.getInstance().getUserRepository();
 
+    @Override
     public void registerUser() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите имя пользователя:");

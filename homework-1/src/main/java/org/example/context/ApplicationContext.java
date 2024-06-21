@@ -6,10 +6,13 @@ import org.example.conferencehall.impl.ConferenceHallServiceImpl;
 import org.example.conferencehall.model.ConferenceHall;
 import org.example.crud.CrudRepository;
 import org.example.menu.BookingMenu;
-import org.example.menu.Menu;
 import org.example.menu.ConferenceHallMenu;
+import org.example.menu.Menu;
 import org.example.menu.WorkplaceMenu;
 import org.example.user.repository.UserRepository;
+import org.example.user.repository.UserRepositoryImpl;
+import org.example.user.service.AuthenticationService;
+import org.example.user.service.RegistrationService;
 import org.example.user.service.impl.AuthenticationServiceImpl;
 import org.example.user.service.impl.RegistrationServiceImpl;
 import org.example.workplace.WorkPlaceService;
@@ -21,8 +24,8 @@ public class ApplicationContext {
 
     private static ApplicationContext applicationContext;
     private UserRepository userRepository;
-    private RegistrationServiceImpl registrationServiceImpl;
-    private AuthenticationServiceImpl authenticationServiceImpl;
+    private RegistrationService registrationService;
+    private AuthenticationService authenticationService;
     private Menu conferenceHallMenu;
     private Menu workplaceMenu;
     private Menu bookingMenu;
@@ -64,23 +67,23 @@ public class ApplicationContext {
 
     public UserRepository getUserRepository() {
         if (userRepository == null) {
-            userRepository = new UserRepository();
+            userRepository = new UserRepositoryImpl();
         }
         return userRepository;
     }
 
-    public RegistrationServiceImpl getRegistrationManager() {
-        if (registrationServiceImpl == null) {
-            registrationServiceImpl = new RegistrationServiceImpl();
+    public RegistrationService getRegistrationService() {
+        if (registrationService == null) {
+            registrationService = new RegistrationServiceImpl();
         }
-        return registrationServiceImpl;
+        return registrationService;
     }
 
-    public AuthenticationServiceImpl getAuthenticationManager() {
-        if (authenticationServiceImpl == null) {
-            authenticationServiceImpl = new AuthenticationServiceImpl();
+    public AuthenticationService getAuthenticationService() {
+        if (authenticationService == null) {
+            authenticationService = new AuthenticationServiceImpl();
         }
-        return authenticationServiceImpl;
+        return authenticationService;
     }
 
     public Menu getConferenceHallMenu() {
