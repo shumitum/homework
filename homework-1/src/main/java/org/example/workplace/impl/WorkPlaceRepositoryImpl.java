@@ -15,7 +15,7 @@ public class WorkPlaceRepositoryImpl implements CrudRepository<Workplace> {
     @Override
     public void save(Workplace workplace) {
         if (workplace != null) {
-            workplaces.put(workplace.getWorkplaceId(), workplace);
+            workplaces.put(workplace.getPlaceId(), workplace);
             System.out.printf("Рабочее место создано - %s%n%n", workplace);
         } else {
             System.out.println("Рабочее место is null, Рабочее место wasn't saved");
@@ -24,8 +24,8 @@ public class WorkPlaceRepositoryImpl implements CrudRepository<Workplace> {
 
     @Override
     public void update(Workplace workplace) {
-        if (workplaces.containsKey(workplace.getWorkplaceId())) {
-            workplaces.put(workplace.getWorkplaceId(), workplace);
+        if (workplaces.containsKey(workplace.getPlaceId())) {
+            workplaces.put(workplace.getPlaceId(), workplace);
             System.out.printf("Данные рабочего места обновлены - %s%n%n", workplace);
         } else {
             throw new NoSuchElementException("Рабочее место not found, Рабочее место wasn't updated");

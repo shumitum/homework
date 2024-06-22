@@ -1,5 +1,11 @@
 package org.example.context;
 
+import org.example.booking.BookingRepository;
+import org.example.booking.BookingService;
+import org.example.booking.impl.conferencehall.ConferenceHallBookingRepositoryImpl;
+import org.example.booking.impl.conferencehall.ConferenceHallBookingServiceImpl;
+import org.example.booking.impl.workplace.WorkplaceBookingRepositoryImpl;
+import org.example.booking.impl.workplace.WorkplaceBookingServiceImpl;
 import org.example.conferencehall.ConferenceHallService;
 import org.example.conferencehall.impl.ConferenceHallRepositoryImpl;
 import org.example.conferencehall.impl.ConferenceHallServiceImpl;
@@ -33,8 +39,40 @@ public class ApplicationContext {
     private ConferenceHallService conferenceHallService;
     private CrudRepository<Workplace> workPlaceRepository;
     private WorkPlaceService workPlaceService;
+    private BookingService workplaceBookingService;
+    private BookingService conferenceHallBookingService;
+    private BookingRepository workplaceBookingRepository;
+    private BookingRepository conferenceHallBookingRepository;
 
     private ApplicationContext() {
+    }
+
+    public BookingRepository getConferenceHallBookingRepository() {
+        if (conferenceHallBookingRepository == null) {
+            conferenceHallBookingRepository = new ConferenceHallBookingRepositoryImpl();
+        }
+        return conferenceHallBookingRepository;
+    }
+
+    public BookingRepository getWorkplaceBookingRepository() {
+        if (workplaceBookingRepository == null) {
+            workplaceBookingRepository = new WorkplaceBookingRepositoryImpl();
+        }
+        return workplaceBookingRepository;
+    }
+
+    public BookingService getConferenceHallBookingService() {
+        if (conferenceHallBookingService == null) {
+            conferenceHallBookingService = new ConferenceHallBookingServiceImpl();
+        }
+        return conferenceHallBookingService;
+    }
+
+    public BookingService getWorkplaceBookingService() {
+        if (workplaceBookingService == null) {
+            workplaceBookingService = new WorkplaceBookingServiceImpl();
+        }
+        return workplaceBookingService;
     }
 
     public WorkPlaceService getWorkPlaceService() {

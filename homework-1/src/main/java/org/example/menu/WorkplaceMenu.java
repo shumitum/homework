@@ -27,19 +27,7 @@ public class WorkplaceMenu implements Menu {
                 case "4":
                     System.out.println(workPlaceService.findAllWorkplaces());
                     break;
-                case "5":
-                    //placeService.updateConferenceHall();
-                    break;
                 case "6":
-                    //placeService.updateConferenceHall();
-                    break;
-                case "7":
-                    //placeService.updateConferenceHall();
-                    break;
-                case "8":
-                    //placeService.updateConferenceHall();
-                    break;
-                case "q":
                     return;
                 default:
                     System.out.println((char) 27 + "[31mИзвините, такой команды не существует." + (char) 27 + "[0m");
@@ -55,7 +43,7 @@ public class WorkplaceMenu implements Menu {
         System.out.println("3 - Удалить рабочее место");
         System.out.println("4 - Посмотреть все доступные рабочие места");
         System.out.println("5 - ");
-        System.out.println("q - Выйти в предыдущее меню");
+        System.out.println("6 - Выйти в предыдущее меню");
     }
 
 }

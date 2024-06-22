@@ -14,7 +14,7 @@ public class WorkPlaceServiceImpl implements WorkPlaceService {
 
     private final CrudRepository<Workplace> workPlaceRepository = ApplicationContext
             .getInstance().getWorkPlaceRepository();
-    private static int id = 0;
+    private int id = 0;
 
     @Override
     public void createWorkplace() {

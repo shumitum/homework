@@ -1,8 +1,14 @@
 package org.example.menu;
 
+import org.example.booking.BookingService;
+import org.example.context.ApplicationContext;
+
 import java.util.Scanner;
 
 public class BookingMenu implements Menu {
+
+    private final BookingService workplaceBookingService = ApplicationContext.getInstance().getWorkplaceBookingService();
+    private final BookingService conferenceHallBookingService = ApplicationContext.getInstance().getConferenceHallBookingService();
 
     @Override
     public void handleUserAction() {
@@ -12,8 +18,10 @@ public class BookingMenu implements Menu {
             String command = scanner.next();
             switch (command.trim()) {
                 case "1":
+                    conferenceHallBookingService.createBooking();
                     break;
                 case "2":
+                    workplaceBookingService.createBooking();
                     break;
                 case "3":
                     return;
@@ -28,6 +36,11 @@ public class BookingMenu implements Menu {
         System.out.println("-=Выберите действие=-");
         System.out.println("1 - Забронировать конференц-зал");
         System.out.println("2 - Забронировать рабочее место");
+        System.out.println("3 - Отменить бронь конференц-зала");
+        System.out.println("4 - Отменить бронь рабочего места");
+        System.out.println(" - ");
+        System.out.println(" - ");
+        System.out.println(" - ");
         System.out.println("3 - Выйти в предыдущее меню");
     }
 

@@ -5,6 +5,7 @@ import org.example.user.model.User;
 import org.example.user.repository.UserRepository;
 import org.example.user.service.AuthenticationService;
 
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class AuthenticationServiceImpl implements AuthenticationService {
@@ -37,6 +38,16 @@ public class AuthenticationServiceImpl implements AuthenticationService {
             return "Пользователь не авторизован";
         }
     }
+
+    @Override
+    public User getAuthorizedUser() {
+        if (authorizedUser != null) {
+            return authorizedUser;
+        } else {
+            throw new NoSuchElementException("Пользователь не авторизован");
+        }
+    }
+
     @Override
     public boolean checkAuthorizedUserExistence() {
         return authorizedUser != null;

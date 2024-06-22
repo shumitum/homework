@@ -1,13 +1,27 @@
 package org.example.workplace.model;
 
-import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.ToString;
+import lombok.NoArgsConstructor;
+import org.example.place.Place;
 
 @Getter
-@ToString
-@AllArgsConstructor
-public class Workplace {
-    private Integer workplaceId;
+@EqualsAndHashCode(callSuper = true)
+@NoArgsConstructor
+public class Workplace extends Place {
+    //private Integer workplaceId;
     private Integer floor;
+
+    public Workplace(Integer placeId, Integer floor) {
+        super(placeId);
+        this.floor = floor;
+    }
+
+    @Override
+    public String toString() {
+        return "Workplace{" +
+                "workplaceId=" + getPlaceId() +
+                ", floor=" + floor +
+                "} ";
+    }
 }

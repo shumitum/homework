@@ -14,7 +14,7 @@ public class ConferenceHallServiceImpl implements ConferenceHallService {
 
     private final CrudRepository<ConferenceHall> conferenceHallRepository = ApplicationContext
             .getInstance().getConferenceHallRepository();
-    private static int id = 0;
+    private int id = 0;
 
     @Override
     public void createConferenceHall() {
