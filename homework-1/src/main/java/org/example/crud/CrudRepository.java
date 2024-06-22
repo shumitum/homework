@@ -10,4 +10,6 @@ public interface CrudRepository<T> {
     void delete(Integer id);
 
     List<T> findAll();
+
+    boolean existsWorkplace(Integer id );
 }

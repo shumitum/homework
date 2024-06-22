@@ -1,8 +1,6 @@
 package org.example.booking.model;
 
 import lombok.*;
-import org.example.place.Place;
-import org.example.user.model.User;
 
 import java.time.LocalDate;
 
@@ -17,5 +15,5 @@ public class Booking {
     private Slot slot;
     private PlaceType placeType;
     private String bookerName;
-    private Place bookingPlaceId;
+    private Integer bookingPlaceId;
 }

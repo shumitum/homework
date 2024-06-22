@@ -11,6 +11,7 @@ import org.example.user.service.AuthenticationService;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 public class ConferenceHallBookingServiceImpl implements BookingService {
@@ -36,6 +37,31 @@ public class ConferenceHallBookingServiceImpl implements BookingService {
         } catch (RuntimeException exc) {
             System.out.println(exc.getMessage());
         }
+    }
+
+    @Override
+    public void cancelBooking() {
+
+    }
+
+    @Override
+    public void getAvailableSlotsByDate() {
+
+    }
+
+    @Override
+    public void getBookingsByDate() {
+
+    }
+
+    @Override
+    public void getBookingsByUserName() {
+
+    }
+
+    @Override
+    public List<Booking> getAllBookings() {
+        return conferenceHallBookingRepository.findAllBookings();
     }
 
     private Slot setSlot() throws InputMismatchException {

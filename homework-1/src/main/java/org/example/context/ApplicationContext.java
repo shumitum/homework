@@ -21,6 +21,8 @@ import org.example.user.service.AuthenticationService;
 import org.example.user.service.RegistrationService;
 import org.example.user.service.impl.AuthenticationServiceImpl;
 import org.example.user.service.impl.RegistrationServiceImpl;
+import org.example.validation.TimeValidationService;
+import org.example.validation.TimeValidationServiceImpl;
 import org.example.workplace.WorkPlaceService;
 import org.example.workplace.impl.WorkPlaceRepositoryImpl;
 import org.example.workplace.impl.WorkPlaceServiceImpl;
@@ -43,8 +45,16 @@ public class ApplicationContext {
     private BookingService conferenceHallBookingService;
     private BookingRepository workplaceBookingRepository;
     private BookingRepository conferenceHallBookingRepository;
+    private TimeValidationService timeValidationService;
 
     private ApplicationContext() {
+    }
+
+    public TimeValidationService getTimeValidationService() {
+        if (timeValidationService == null) {
+            timeValidationService = new TimeValidationServiceImpl();
+        }
+        return timeValidationService;
     }
 
     public BookingRepository getConferenceHallBookingRepository() {

@@ -27,7 +27,7 @@ public class ConferenceHallMenu implements Menu {
                 case "4":
                     System.out.println(conferenceHallService.findAllConferenceHalls());
                     break;
-                case "6":
+                case "0":
                     return;
                 default:
                     System.out.println((char) 27 + "[31mИзвините, такой команды не существует." + (char) 27 + "[0m");
@@ -42,8 +42,7 @@ public class ConferenceHallMenu implements Menu {
         System.out.println("2 - Обновить данные конференц-зала");
         System.out.println("3 - Удалить конференц-зал");
         System.out.println("4 - Посмотреть все доступные конференц-залы");
-        System.out.println("5 - ");
-        System.out.println("6 - Выйти в предыдущее меню");
+        System.out.println("0 - Выйти в предыдущее меню");
     }
 
 }

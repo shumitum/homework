@@ -2,7 +2,17 @@ package org.example.booking;
 
 import org.example.booking.model.Booking;
 
-public interface BookingRepository {
+import java.time.LocalDate;
+import java.util.List;
 
-void save(Booking booking);
+public interface BookingRepository {
+    void save(Booking booking);
+
+    void deleteBooking(Integer bookingId, String userName);
+
+    List<Booking> findBookingByUserName(String userName);
+
+    List<Booking> findBookingByDate(LocalDate date);
+
+    List<Booking> findAllBookings();
 }

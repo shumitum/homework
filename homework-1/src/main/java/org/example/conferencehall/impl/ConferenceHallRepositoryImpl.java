@@ -47,4 +47,9 @@ public class ConferenceHallRepositoryImpl implements CrudRepository<ConferenceHa
         return halls.values().stream()
                 .toList();
     }
+
+    @Override
+    public boolean existsWorkplace(Integer id) {
+        return halls.containsKey(id);
+    }
 }
