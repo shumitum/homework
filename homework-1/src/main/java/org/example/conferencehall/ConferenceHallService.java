@@ -6,7 +6,10 @@ import java.util.List;
 
 public interface ConferenceHallService {
     void createConferenceHall();
+
     void updateConferenceHall();
+
     void deleteConferenceHall();
+
     List<ConferenceHall> findAllConferenceHalls();
 }

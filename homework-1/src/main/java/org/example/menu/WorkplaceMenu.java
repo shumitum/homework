@@ -44,5 +44,4 @@ public class WorkplaceMenu implements Menu {
         System.out.println("4 - Посмотреть все доступные рабочие места");
         System.out.println("0 - Выйти в предыдущее меню");
     }
-
 }
