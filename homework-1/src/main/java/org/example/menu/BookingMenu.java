@@ -21,31 +21,31 @@ public class BookingMenu implements Menu {
                     conferenceHallBookingService.createBooking();
                     break;
                 case "2":
-                    workplaceBookingService.createBooking();//ОК
+                    workplaceBookingService.createBooking();
                     break;
                 case "3":
                     conferenceHallBookingService.cancelBooking();
                     break;
                 case "4":
-                    workplaceBookingService.cancelBooking();//ОК
+                    workplaceBookingService.cancelBooking();
                     break;
                 case "5":
                     conferenceHallBookingService.getAvailableSlotsByDate();
                     break;
                 case "6":
-                    workplaceBookingService.getAvailableSlotsByDate();//ОК
+                    workplaceBookingService.getAvailableSlotsByDate();
                     break;
                 case "7":
                     conferenceHallBookingService.getBookingsByDate();
                     break;
                 case "8":
-                    workplaceBookingService.getBookingsByDate();//ОК--------------
+                    workplaceBookingService.getBookingsByDate();
                     break;
                 case "9":
                     conferenceHallBookingService.getBookingsByUserName();
                     break;
                 case "10":
-                    workplaceBookingService.getBookingsByUserName();//ОК--------------
+                    workplaceBookingService.getBookingsByUserName();
                     break;
                 case "11":
                     System.out.println("Все брони: " + conferenceHallBookingService.getAllBookings());

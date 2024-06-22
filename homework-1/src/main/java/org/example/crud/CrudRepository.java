@@ -11,5 +11,5 @@ public interface CrudRepository<T> {
 
     List<T> findAll();
 
-    boolean existsWorkplace(Integer id );
+    boolean existsById(Integer id );
 }

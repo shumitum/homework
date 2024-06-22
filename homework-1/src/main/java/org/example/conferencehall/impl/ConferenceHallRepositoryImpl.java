@@ -49,7 +49,7 @@ public class ConferenceHallRepositoryImpl implements CrudRepository<ConferenceHa
     }
 
     @Override
-    public boolean existsWorkplace(Integer id) {
+    public boolean existsById(Integer id) {
         return halls.containsKey(id);
     }
 }

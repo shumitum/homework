@@ -144,7 +144,7 @@ public class WorkplaceBookingServiceImpl implements BookingService {
         System.out.println("Введите ID рабочего места");
         try {
             int workplaceId = scanner.nextInt();
-            if (workPlaceRepository.existsWorkplace(workplaceId)) {
+            if (workPlaceRepository.existsById(workplaceId)) {
                 return workplaceId;
             }
         } catch (InputMismatchException exc) {

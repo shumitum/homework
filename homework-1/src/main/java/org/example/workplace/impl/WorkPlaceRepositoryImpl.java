@@ -49,7 +49,7 @@ public class WorkPlaceRepositoryImpl implements CrudRepository<Workplace> {
     }
 
     @Override
-    public boolean existsWorkplace(Integer id) {
+    public boolean existsById(Integer id) {
         return workplaces.containsKey(id);
     }
 }
