@@ -54,7 +54,7 @@ public class BookingMenu implements Menu {
                     System.out.println("Все брони: " + conferenceHallBookingService.getAllBookings());
                     break;
                 case "12":
-                    System.out.println("Все брони: " + workplaceBookingService.getAllBookings());//ОК
+                    System.out.println("Все брони: " + workplaceBookingService.getAllBookings());
                     break;
                 case "0":
                     return;

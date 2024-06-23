@@ -1,11 +1,9 @@
 package org.example.menu;
 
-import lombok.SneakyThrows;
 import org.example.user.service.AuthenticationService;
 import org.example.user.service.RegistrationService;
 import org.example.user.service.impl.AuthenticationServiceImpl;
 import org.example.user.service.impl.RegistrationServiceImpl;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -48,7 +46,6 @@ class PrimaryMenuTest {
     }
 
     @Test
-    @SneakyThrows
     void handleUserAction_whenInvokeFirstMenuOption_thenThrowsException() {
         doThrow(NoSuchElementException.class).when(registrationService).registerUser();
 
@@ -59,7 +56,6 @@ class PrimaryMenuTest {
     }
 
     @Test
-    @SneakyThrows
     void handleUserAction_whenInvokeSecondMenuOption_thenThrowsException() {
         doThrow(NoSuchElementException.class).when(authenticationService).authenticateUser();
 
@@ -70,7 +66,6 @@ class PrimaryMenuTest {
     }
 
     @Test
-    @SneakyThrows
     void handleUserAction_whenInvokeThirdMenuOption_thenThrowsException() {
         when(authenticationService.checkAuthorizedUserExistence()).thenReturn(true);
         doThrow(NoSuchElementException.class).when(conferenceHallMenu).handleUserAction();
@@ -83,7 +78,6 @@ class PrimaryMenuTest {
     }
 
     @Test
-    @SneakyThrows
     void handleUserAction_whenInvokeFourthMenuOption_thenThrowsException() {
         when(authenticationService.checkAuthorizedUserExistence()).thenReturn(true);
         doThrow(NoSuchElementException.class).when(workplaceMenu).handleUserAction();
@@ -96,7 +90,6 @@ class PrimaryMenuTest {
     }
 
     @Test
-    @SneakyThrows
     void handleUserAction_whenInvokeFifthMenuOption_thenThrowsException() {
         when(authenticationService.checkAuthorizedUserExistence()).thenReturn(true);
         doThrow(NoSuchElementException.class).when(bookingMenu).handleUserAction();
@@ -109,7 +102,6 @@ class PrimaryMenuTest {
     }
 
     @Test
-    @SneakyThrows
     void handleUserAction_whenInvokeSixthMenuOption_thenFinishProcess() {
         when(authenticationService.checkAuthorizedUserExistence()).thenReturn(true);
 

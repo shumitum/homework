@@ -28,7 +28,7 @@ class ConferenceHallServiceImplTest {
     }
 
     @Test
-    void createConferenceHall() {
+    void createConferenceHall_whenInvokeWithValidConferenceHall_thenInvokeSaveMethod() {
         ConferenceHall conferenceHall = new ConferenceHall(1, "Hall");
         doNothing().when(conferenceHallRepository).save(conferenceHall);
 
@@ -39,7 +39,7 @@ class ConferenceHallServiceImplTest {
     }
 
     @Test
-    void deleteConferenceHall() {
+    void deleteConferenceHall_whenInvokeWithValidConferenceHallId_thenInvokeDeleteMethod() {
         doNothing().when(conferenceHallRepository).delete(1);
 
         System.setIn(new ByteArrayInputStream("1".getBytes()));
@@ -49,14 +49,14 @@ class ConferenceHallServiceImplTest {
     }
 
     @Test
-    void deleteConferenceHall_when() {
+    void deleteConferenceHall_whenInvokeWithInValidConferenceHallId_thenDontInvokeDeleteMethod() {
         System.setIn(new ByteArrayInputStream("ert".getBytes()));
 
         verify(conferenceHallRepository, times(0)).delete(1);
     }
 
     @Test
-    void findAllConferenceHalls() {
+    void findAllConferenceHalls_whenInvoke_thenReturnListOfConferenceHalls() {
         when(conferenceHallRepository.findAll()).thenReturn(List.of(new ConferenceHall(), new ConferenceHall()));
 
         List<ConferenceHall> conferenceHalls = conferenceHallService.findAllConferenceHalls();

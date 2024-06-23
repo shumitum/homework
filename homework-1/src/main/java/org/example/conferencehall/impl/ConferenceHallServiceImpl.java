@@ -17,6 +17,7 @@ public class ConferenceHallServiceImpl implements ConferenceHallService {
 
     private CrudRepository<ConferenceHall> conferenceHallRepository = ApplicationContext
             .getInstance().getConferenceHallRepository();
+
     @Setter(AccessLevel.NONE)
     private int id = 0;
 
