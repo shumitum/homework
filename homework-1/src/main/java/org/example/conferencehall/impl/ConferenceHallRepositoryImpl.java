@@ -1,5 +1,6 @@
 package org.example.conferencehall.impl;
 
+import lombok.Getter;
 import org.example.conferencehall.model.ConferenceHall;
 import org.example.crud.CrudRepository;
 
@@ -8,17 +9,18 @@ import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
 
+@Getter
 public class ConferenceHallRepositoryImpl implements CrudRepository<ConferenceHall> {
 
     private final Map<Integer, ConferenceHall> halls = new HashMap<>();
 
     @Override
     public void save(ConferenceHall conferenceHall) {
-        if (conferenceHall != null) {
+        if (conferenceHall != null && !halls.containsKey(conferenceHall.getConferenceHallId())) {
             halls.put(conferenceHall.getConferenceHallId(), conferenceHall);
             System.out.printf("Конференц-зал создан - %s%n%n", conferenceHall);
         } else {
-            System.out.println("ConferenceHall is null, place wasn't saved");
+            System.out.println("ConferenceHall is null or have existing id, place wasn't saved");
         }
     }
 

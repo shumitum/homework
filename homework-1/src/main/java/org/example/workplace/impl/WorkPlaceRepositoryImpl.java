@@ -1,5 +1,6 @@
 package org.example.workplace.impl;
 
+import lombok.Getter;
 import org.example.crud.CrudRepository;
 import org.example.workplace.model.Workplace;
 
@@ -8,17 +9,18 @@ import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
 
+@Getter
 public class WorkPlaceRepositoryImpl implements CrudRepository<Workplace> {
 
     private final Map<Integer, Workplace> workplaces = new HashMap<>();
 
     @Override
     public void save(Workplace workplace) {
-        if (workplace != null) {
+        if (workplace != null && !workplaces.containsKey(workplace.getWorkplaceId())) {
             workplaces.put(workplace.getWorkplaceId(), workplace);
             System.out.printf("Рабочее место создано - %s%n%n", workplace);
         } else {
-            System.out.println("Рабочее место is null, Рабочее место wasn't saved");
+            System.out.println("Рабочее место is null or have existing id, Рабочее место wasn't saved");
         }
     }
 

@@ -14,11 +14,11 @@ public class ConferenceHallBookingRepositoryImpl implements BookingRepository {
 
     @Override
     public void save(Booking booking) {
-        if (booking != null) {
+        if (booking != null && !conferenceHallBookings.containsKey(booking.getBookingId())) {
             conferenceHallBookings.put(booking.getBookingId(), booking);
             System.out.printf("Бронирование конференц-зала создано - %s%n%n", booking);
         } else {
-            System.out.println("Бронирование конференц-зала is null, бронирование wasn't saved");
+            System.out.println("Бронирование конференц-зала is null or have existing id, бронирование wasn't saved");
         }
     }
 

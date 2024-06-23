@@ -32,7 +32,7 @@ class WorkPlaceRepositoryImplTest {
     void save_whenInvokeWithValidWorkplace_thenSaveWorkplace() {
         workPlaceRepository.save(workplace);
 
-        List<Workplace> all = workPlaceRepository.findAll();
+        List<Workplace> all = workPlaceRepository.getWorkplaces().values().stream().toList();
 
         assertThat(all.get(0))
                 .isEqualTo(workplace);
@@ -42,10 +42,10 @@ class WorkPlaceRepositoryImplTest {
     void save_whenInvokeWithNull_thenDontSaveWorkplace() {
         workPlaceRepository.save(null);
 
-        List<Workplace> all = workPlaceRepository.findAll();
+        List<Workplace> all = workPlaceRepository.getWorkplaces().values().stream().toList();
 
-        assertThat(all.size())
-                .isZero();
+        assertThat(all)
+                .isEmpty();
     }
 
     @Test
@@ -55,7 +55,8 @@ class WorkPlaceRepositoryImplTest {
 
         workPlaceRepository.update(updatedWorkplace);
 
-        List<Workplace> all = workPlaceRepository.findAll();
+        List<Workplace> all = workPlaceRepository.getWorkplaces().values().stream().toList();
+
         assertThat(all.get(0))
                 .isEqualTo(updatedWorkplace);
     }
@@ -74,10 +75,10 @@ class WorkPlaceRepositoryImplTest {
 
         workPlaceRepository.delete(1);
 
-        List<Workplace> all = workPlaceRepository.findAll();
+        List<Workplace> all = workPlaceRepository.getWorkplaces().values().stream().toList();
 
-        assertThat(all.size())
-                .isZero();
+        assertThat(all)
+                .isEmpty();
     }
 
     @Test
@@ -88,11 +89,11 @@ class WorkPlaceRepositoryImplTest {
     }
 
     @Test
-    void findAll() {
+    void findAll_whenInvoke_then_returnListOfTwoWorkplaces() {
         workPlaceRepository.save(workplace);
         workPlaceRepository.save(new Workplace(2, 2));
 
-        List<Workplace> all = workPlaceRepository.findAll();
+        List<Workplace> all = workPlaceRepository.getWorkplaces().values().stream().toList();
 
         assertThat(all)
                 .hasSize(2);
