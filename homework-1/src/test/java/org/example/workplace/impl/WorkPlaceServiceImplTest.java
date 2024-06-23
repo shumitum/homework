@@ -28,7 +28,7 @@ class WorkPlaceServiceImplTest {
     }
 
     @Test
-    void createWorkplace() {
+    void createWorkplace_whenInvokeWithValidWorkplace_thenCreateNewWorkplace() {
         Workplace workplace = new Workplace(1, 1);
         doNothing().when(workPlaceRepository).save(workplace);
 
@@ -49,7 +49,7 @@ class WorkPlaceServiceImplTest {
     }
 
     @Test
-    void deleteWorkplace() {
+    void deleteWorkplace_whenInvokeWithValidWorkplaceId_thenInvokeDeleteMethod() {
         doNothing().when(workPlaceRepository).delete(1);
 
         System.setIn(new ByteArrayInputStream("1".getBytes()));
@@ -66,7 +66,7 @@ class WorkPlaceServiceImplTest {
     }
 
     @Test
-    void findAllWorkplaces() {
+    void findAllWorkplaces_whenInvoke_thenReturnListOfTwoWorkplaces() {
         when(workPlaceRepository.findAll()).thenReturn(List.of(new Workplace(), new Workplace()));
 
         List<Workplace> workplaces = workPlaceService.findAllWorkplaces();
