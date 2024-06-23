@@ -1,5 +1,7 @@
 package org.example.booking.impl.workplace;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.example.booking.BookingRepository;
 import org.example.booking.model.Booking;
 
@@ -8,9 +10,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Getter
 public class WorkplaceBookingRepositoryImpl implements BookingRepository {
 
-    private final Map<Integer, Booking> workPlaceBookings = new HashMap<>();
+    private Map<Integer, Booking> workPlaceBookings = new HashMap<>();
 
     @Override
     public void save(Booking booking) {

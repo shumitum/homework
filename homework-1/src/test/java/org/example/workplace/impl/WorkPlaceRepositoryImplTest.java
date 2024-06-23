@@ -34,8 +34,8 @@ class WorkPlaceRepositoryImplTest {
 
         List<Workplace> all = workPlaceRepository.getWorkplaces().values().stream().toList();
 
-        assertThat(all.get(0))
-                .isEqualTo(workplace);
+        assertThat(all)
+                .contains(workplace);
     }
 
     @Test
@@ -57,8 +57,8 @@ class WorkPlaceRepositoryImplTest {
 
         List<Workplace> all = workPlaceRepository.getWorkplaces().values().stream().toList();
 
-        assertThat(all.get(0))
-                .isEqualTo(updatedWorkplace);
+        assertThat(all)
+                .contains(updatedWorkplace);
     }
 
     @Test

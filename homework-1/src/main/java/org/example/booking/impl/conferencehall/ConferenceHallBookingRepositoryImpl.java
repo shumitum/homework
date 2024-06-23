@@ -1,5 +1,6 @@
 package org.example.booking.impl.conferencehall;
 
+import lombok.Getter;
 import org.example.booking.BookingRepository;
 import org.example.booking.model.Booking;
 
@@ -8,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Getter
 public class ConferenceHallBookingRepositoryImpl implements BookingRepository {
 
     private final Map<Integer, Booking> conferenceHallBookings = new HashMap<>();
