@@ -1,5 +1,6 @@
 package org.example.user.service.impl;
 
+import lombok.Setter;
 import org.example.context.ApplicationContext;
 import org.example.user.model.User;
 import org.example.user.repository.UserRepository;
@@ -8,10 +9,11 @@ import org.example.user.service.AuthenticationService;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
+@Setter
 public class AuthenticationServiceImpl implements AuthenticationService {
 
     private User authorizedUser;
-    private final UserRepository userRepository = ApplicationContext.getInstance().getUserRepository();
+    private UserRepository userRepository = ApplicationContext.getInstance().getUserRepository();
 
     @Override
     public void authenticateUser() {

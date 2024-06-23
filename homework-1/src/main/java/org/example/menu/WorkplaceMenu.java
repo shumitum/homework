@@ -1,12 +1,14 @@
 package org.example.menu;
 
+import lombok.Setter;
 import org.example.context.ApplicationContext;
 import org.example.workplace.WorkPlaceService;
 
 import java.util.Scanner;
 
+@Setter
 public class WorkplaceMenu implements Menu {
-    private final WorkPlaceService workPlaceService = ApplicationContext.getInstance().getWorkPlaceService();
+    private WorkPlaceService workPlaceService = ApplicationContext.getInstance().getWorkPlaceService();
 
     @Override
     public void handleUserAction() {

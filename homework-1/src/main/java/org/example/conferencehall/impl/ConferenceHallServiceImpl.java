@@ -1,5 +1,7 @@
 package org.example.conferencehall.impl;
 
+import lombok.AccessLevel;
+import lombok.Setter;
 import org.example.conferencehall.ConferenceHallService;
 import org.example.conferencehall.model.ConferenceHall;
 import org.example.context.ApplicationContext;
@@ -10,15 +12,13 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
+@Setter
 public class ConferenceHallServiceImpl implements ConferenceHallService {
 
     private CrudRepository<ConferenceHall> conferenceHallRepository = ApplicationContext
             .getInstance().getConferenceHallRepository();
+    @Setter(AccessLevel.NONE)
     private int id = 0;
-
-    public void setConferenceHallRepository(CrudRepository<ConferenceHall> conferenceHallRepository) {
-        this.conferenceHallRepository = conferenceHallRepository;
-    }
 
     @Override
     public void createConferenceHall() {

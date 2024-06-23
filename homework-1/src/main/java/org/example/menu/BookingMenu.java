@@ -1,15 +1,17 @@
 package org.example.menu;
 
+import lombok.Setter;
 import org.example.booking.BookingService;
 import org.example.context.ApplicationContext;
 
 import java.util.Scanner;
 
+@Setter
 public class BookingMenu implements Menu {
 
-    private final ApplicationContext context = ApplicationContext.getInstance();
-    private final BookingService workplaceBookingService = context.getWorkplaceBookingService();
-    private final BookingService conferenceHallBookingService = context.getConferenceHallBookingService();
+    private ApplicationContext context = ApplicationContext.getInstance();
+    private BookingService workplaceBookingService = context.getWorkplaceBookingService();
+    private BookingService conferenceHallBookingService = context.getConferenceHallBookingService();
 
     @Override
     public void handleUserAction() {

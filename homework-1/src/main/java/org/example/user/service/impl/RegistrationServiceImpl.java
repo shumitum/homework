@@ -1,14 +1,17 @@
 package org.example.user.service.impl;
 
+import lombok.AccessLevel;
+import lombok.Setter;
 import org.example.context.ApplicationContext;
 import org.example.user.repository.UserRepository;
 import org.example.user.service.RegistrationService;
 
 import java.util.Scanner;
 
+@Setter
 public class RegistrationServiceImpl implements RegistrationService {
 
-    private final UserRepository userRepository = ApplicationContext.getInstance().getUserRepository();
+    private UserRepository userRepository = ApplicationContext.getInstance().getUserRepository();
 
     @Override
     public void registerUser() {

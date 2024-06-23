@@ -1,12 +1,14 @@
 package org.example.menu;
 
+import lombok.Setter;
 import org.example.conferencehall.ConferenceHallService;
 import org.example.context.ApplicationContext;
 
 import java.util.Scanner;
 
+@Setter
 public class ConferenceHallMenu implements Menu {
-    private final ConferenceHallService conferenceHallService = ApplicationContext.getInstance().getConferenceHallService();
+    private ConferenceHallService conferenceHallService = ApplicationContext.getInstance().getConferenceHallService();
 
     @Override
     public void handleUserAction() {

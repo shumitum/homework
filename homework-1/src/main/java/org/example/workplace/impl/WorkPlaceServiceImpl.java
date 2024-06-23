@@ -1,5 +1,7 @@
 package org.example.workplace.impl;
 
+import lombok.AccessLevel;
+import lombok.Setter;
 import org.example.context.ApplicationContext;
 import org.example.crud.CrudRepository;
 import org.example.workplace.WorkPlaceService;
@@ -10,15 +12,13 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
+@Setter
 public class WorkPlaceServiceImpl implements WorkPlaceService {
 
     private CrudRepository<Workplace> workPlaceRepository = ApplicationContext
             .getInstance().getWorkPlaceRepository();
+    @Setter(AccessLevel.NONE)
     private int id = 0;
-
-    public void setWorkPlaceRepository(CrudRepository<Workplace> workPlaceRepository) {
-        this.workPlaceRepository = workPlaceRepository;
-    }
 
     @Override
     public void createWorkplace() {

@@ -1,5 +1,7 @@
 package org.example.booking.impl.conferencehall;
 
+import lombok.AccessLevel;
+import lombok.Setter;
 import org.example.booking.BookingRepository;
 import org.example.booking.BookingService;
 import org.example.booking.model.Booking;
@@ -16,14 +18,16 @@ import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.*;
 
+@Setter
 public class ConferenceHallBookingServiceImpl implements BookingService {
 
+    @Setter(AccessLevel.NONE)
     private int id = 0;
-    private final ApplicationContext context = ApplicationContext.getInstance();
-    private final AuthenticationService authenticationService = context.getAuthenticationService();
-    private final BookingRepository conferenceHallBookingRepository = context.getConferenceHallBookingRepository();
-    private final TimeValidationService timeValidationService = context.getTimeValidationService();
-    private final CrudRepository<ConferenceHall> conferenceHallRepository = context.getConferenceHallRepository();
+    private ApplicationContext context = ApplicationContext.getInstance();
+    private AuthenticationService authenticationService = context.getAuthenticationService();
+    private BookingRepository conferenceHallBookingRepository = context.getConferenceHallBookingRepository();
+    private TimeValidationService timeValidationService = context.getTimeValidationService();
+    private CrudRepository<ConferenceHall> conferenceHallRepository = context.getConferenceHallRepository();
 
     @Override
     public void createBooking() {
