@@ -12,9 +12,13 @@ import java.util.Scanner;
 
 public class ConferenceHallServiceImpl implements ConferenceHallService {
 
-    private final CrudRepository<ConferenceHall> conferenceHallRepository = ApplicationContext
+    private CrudRepository<ConferenceHall> conferenceHallRepository = ApplicationContext
             .getInstance().getConferenceHallRepository();
     private int id = 0;
+
+    public void setConferenceHallRepository(CrudRepository<ConferenceHall> conferenceHallRepository) {
+        this.conferenceHallRepository = conferenceHallRepository;
+    }
 
     @Override
     public void createConferenceHall() {

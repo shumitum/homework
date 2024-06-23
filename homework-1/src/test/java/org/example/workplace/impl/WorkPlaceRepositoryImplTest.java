@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 class WorkPlaceRepositoryImplTest {
@@ -45,7 +45,7 @@ class WorkPlaceRepositoryImplTest {
         List<Workplace> all = workPlaceRepository.findAll();
 
         assertThat(all.size())
-                .isEqualTo(0);
+                .isZero();
     }
 
     @Test
@@ -77,7 +77,7 @@ class WorkPlaceRepositoryImplTest {
         List<Workplace> all = workPlaceRepository.findAll();
 
         assertThat(all.size())
-                .isEqualTo(0);
+                .isZero();
     }
 
     @Test
@@ -94,8 +94,8 @@ class WorkPlaceRepositoryImplTest {
 
         List<Workplace> all = workPlaceRepository.findAll();
 
-        assertThat(all.size())
-                .isEqualTo(2);
+        assertThat(all)
+                .hasSize(2);
     }
 
     @Test
@@ -105,7 +105,7 @@ class WorkPlaceRepositoryImplTest {
         boolean isWorkplaceExists = workPlaceRepository.existsById(1);
 
         assertThat(isWorkplaceExists)
-                .isEqualTo(true);
+                .isTrue();
     }
 
     @Test
@@ -115,6 +115,6 @@ class WorkPlaceRepositoryImplTest {
         boolean isWorkplaceExists = workPlaceRepository.existsById(2);
 
         assertThat(isWorkplaceExists)
-                .isEqualTo(false);
+                .isFalse();
     }
 }

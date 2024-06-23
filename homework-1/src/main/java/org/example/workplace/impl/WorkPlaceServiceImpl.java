@@ -12,9 +12,13 @@ import java.util.Scanner;
 
 public class WorkPlaceServiceImpl implements WorkPlaceService {
 
-    private final CrudRepository<Workplace> workPlaceRepository = ApplicationContext
+    private CrudRepository<Workplace> workPlaceRepository = ApplicationContext
             .getInstance().getWorkPlaceRepository();
     private int id = 0;
+
+    public void setWorkPlaceRepository(CrudRepository<Workplace> workPlaceRepository) {
+        this.workPlaceRepository = workPlaceRepository;
+    }
 
     @Override
     public void createWorkplace() {

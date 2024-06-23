@@ -47,10 +47,6 @@ class PrimaryMenuTest {
         primaryMenu.setBookingMenu(bookingMenu);
     }
 
-    @AfterEach
-    void tearDown() {
-    }
-
     @Test
     @SneakyThrows
     void handleUserAction_whenInvokeFirstMenuOption_thenThrowsException() {
