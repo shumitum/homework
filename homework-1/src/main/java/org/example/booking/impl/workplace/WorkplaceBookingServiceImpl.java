@@ -19,14 +19,11 @@ import java.util.*;
 public class WorkplaceBookingServiceImpl implements BookingService {
 
     private int id = 0;
-    private final AuthenticationService authenticationService = ApplicationContext
-            .getInstance().getAuthenticationService();
-    private final BookingRepository workplaceBookingRepository = ApplicationContext
-            .getInstance().getWorkplaceBookingRepository();
-    private final TimeValidationService timeValidationService = ApplicationContext
-            .getInstance().getTimeValidationService();
-    private final CrudRepository<Workplace> workPlaceRepository = ApplicationContext
-            .getInstance().getWorkPlaceRepository();
+    private final ApplicationContext context = ApplicationContext.getInstance();
+    private final AuthenticationService authenticationService = context.getAuthenticationService();
+    private final BookingRepository workplaceBookingRepository = context.getWorkplaceBookingRepository();
+    private final TimeValidationService timeValidationService = context.getTimeValidationService();
+    private final CrudRepository<Workplace> workPlaceRepository = context.getWorkPlaceRepository();
 
     @Override
     public void createBooking() {

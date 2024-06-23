@@ -2,10 +2,11 @@ package org.example.user.service.impl;
 
 import org.example.context.ApplicationContext;
 import org.example.user.repository.UserRepository;
+import org.example.user.service.RegistrationService;
 
 import java.util.Scanner;
 
-public class RegistrationServiceImpl implements org.example.user.service.RegistrationService {
+public class RegistrationServiceImpl implements RegistrationService {
 
     private final UserRepository userRepository = ApplicationContext.getInstance().getUserRepository();
 

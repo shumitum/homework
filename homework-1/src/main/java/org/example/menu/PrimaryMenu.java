@@ -1,20 +1,32 @@
 package org.example.menu;
 
+import lombok.Setter;
 import org.example.context.ApplicationContext;
 import org.example.user.service.AuthenticationService;
 import org.example.user.service.RegistrationService;
 
 import java.util.Scanner;
 
-public class PrimaryMenu {
+@Setter
+public class PrimaryMenu implements Menu {
 
-    private final ApplicationContext context = ApplicationContext.getInstance();
-    private final AuthenticationService authenticationService = context.getAuthenticationService();
-    private final RegistrationService registrationService = context.getRegistrationService();
-    private final Menu conferenceHallMenu = context.getConferenceHallMenu();
-    private final Menu workplaceMenu = context.getWorkplaceMenu();
-    private final Menu bookingMenu = context.getBookingMenu();
+    private ApplicationContext context;
+    private AuthenticationService authenticationService;
+    private RegistrationService registrationService;
+    private Menu conferenceHallMenu;
+    private Menu workplaceMenu;
+    private Menu bookingMenu;
 
+    public PrimaryMenu() {
+        this.context = ApplicationContext.getInstance();
+        this.authenticationService = context.getAuthenticationService();
+        this.registrationService = context.getRegistrationService();
+        this.conferenceHallMenu = context.getConferenceHallMenu();
+        this.workplaceMenu = context.getWorkplaceMenu();
+        this.bookingMenu = context.getBookingMenu();
+    }
+
+    @Override
     public void handleUserAction() {
         while (true) {
             printAuthMenu();

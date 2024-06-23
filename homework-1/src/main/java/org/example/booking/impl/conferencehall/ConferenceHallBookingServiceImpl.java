@@ -19,14 +19,11 @@ import java.util.*;
 public class ConferenceHallBookingServiceImpl implements BookingService {
 
     private int id = 0;
-    private final AuthenticationService authenticationService = ApplicationContext
-            .getInstance().getAuthenticationService();
-    private final BookingRepository conferenceHallBookingRepository = ApplicationContext
-            .getInstance().getConferenceHallBookingRepository();
-    private final TimeValidationService timeValidationService = ApplicationContext
-            .getInstance().getTimeValidationService();
-    private final CrudRepository<ConferenceHall> conferenceHallRepository = ApplicationContext
-            .getInstance().getConferenceHallRepository();
+    private final ApplicationContext context = ApplicationContext.getInstance();
+    private final AuthenticationService authenticationService = context.getAuthenticationService();
+    private final BookingRepository conferenceHallBookingRepository = context.getConferenceHallBookingRepository();
+    private final TimeValidationService timeValidationService = context.getTimeValidationService();
+    private final CrudRepository<ConferenceHall> conferenceHallRepository = context.getConferenceHallRepository();
 
     @Override
     public void createBooking() {

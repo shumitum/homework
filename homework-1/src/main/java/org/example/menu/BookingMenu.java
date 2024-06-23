@@ -7,8 +7,9 @@ import java.util.Scanner;
 
 public class BookingMenu implements Menu {
 
-    private final BookingService workplaceBookingService = ApplicationContext.getInstance().getWorkplaceBookingService();
-    private final BookingService conferenceHallBookingService = ApplicationContext.getInstance().getConferenceHallBookingService();
+    private final ApplicationContext context = ApplicationContext.getInstance();
+    private final BookingService workplaceBookingService = context.getWorkplaceBookingService();
+    private final BookingService conferenceHallBookingService = context.getConferenceHallBookingService();
 
     @Override
     public void handleUserAction() {
