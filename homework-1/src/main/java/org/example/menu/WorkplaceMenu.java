@@ -8,7 +8,11 @@ import java.util.Scanner;
 
 @Setter
 public class WorkplaceMenu implements Menu {
-    private WorkPlaceService workPlaceService = ApplicationContext.getInstance().getWorkPlaceService();
+    private WorkPlaceService workPlaceService;
+
+    public WorkplaceMenu() {
+        this.workPlaceService = ApplicationContext.getInstance().getWorkPlaceService();
+    }
 
     @Override
     public void handleUserAction() {

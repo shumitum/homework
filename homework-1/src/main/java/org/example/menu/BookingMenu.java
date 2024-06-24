@@ -9,9 +9,15 @@ import java.util.Scanner;
 @Setter
 public class BookingMenu implements Menu {
 
-    private ApplicationContext context = ApplicationContext.getInstance();
-    private BookingService workplaceBookingService = context.getWorkplaceBookingService();
-    private BookingService conferenceHallBookingService = context.getConferenceHallBookingService();
+    private ApplicationContext context;
+    private BookingService workplaceBookingService;
+    private BookingService conferenceHallBookingService;
+
+    public BookingMenu() {
+        this.context = ApplicationContext.getInstance();
+        this.workplaceBookingService = context.getWorkplaceBookingService();
+        this.conferenceHallBookingService = context.getConferenceHallBookingService();
+    }
 
     @Override
     public void handleUserAction() {
@@ -51,10 +57,10 @@ public class BookingMenu implements Menu {
                     workplaceBookingService.getBookingsByUserName();
                     break;
                 case "11":
-                    System.out.println("Все брони: " + conferenceHallBookingService.getAllBookings());
+                    System.out.println("Все брони конференц-залов: " + conferenceHallBookingService.getAllBookings());
                     break;
                 case "12":
-                    System.out.println("Все брони: " + workplaceBookingService.getAllBookings());
+                    System.out.println("Все брони рабочих мест: " + workplaceBookingService.getAllBookings());
                     break;
                 case "0":
                     return;

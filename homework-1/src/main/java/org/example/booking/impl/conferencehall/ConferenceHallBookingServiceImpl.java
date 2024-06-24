@@ -22,12 +22,20 @@ import java.util.*;
 public class ConferenceHallBookingServiceImpl implements BookingService {
 
     @Setter(AccessLevel.NONE)
-    private int id = 0;
-    private ApplicationContext context = ApplicationContext.getInstance();
-    private AuthenticationService authenticationService = context.getAuthenticationService();
-    private BookingRepository conferenceHallBookingRepository = context.getConferenceHallBookingRepository();
-    private TimeValidationService timeValidationService = context.getTimeValidationService();
-    private CrudRepository<ConferenceHall> conferenceHallRepository = context.getConferenceHallRepository();
+    private int id;
+    private ApplicationContext context;
+    private AuthenticationService authenticationService;
+    private BookingRepository conferenceHallBookingRepository;
+    private TimeValidationService timeValidationService;
+    private CrudRepository<ConferenceHall> conferenceHallRepository;
+
+    public ConferenceHallBookingServiceImpl() {
+        this.context = ApplicationContext.getInstance();
+        this.authenticationService = context.getAuthenticationService();
+        this.conferenceHallBookingRepository = context.getConferenceHallBookingRepository();
+        this.timeValidationService = context.getTimeValidationService();
+        this.conferenceHallRepository = context.getConferenceHallRepository();
+    }
 
     @Override
     public void createBooking() {
@@ -112,14 +120,14 @@ public class ConferenceHallBookingServiceImpl implements BookingService {
 
     private Slot getSlot() throws InputMismatchException {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Выберите слот: цифра 1 - с 9 до 13 ч., цифра 2 с 14 до 18 ч.");
+        System.out.println("Выберите слот: цифра 1 - с 9 до 13 ч., цифра 2 - с 14 до 18 ч.");
         int slot = scanner.nextInt();
         if (slot == 1) {
             return Slot.MORNING_SLOT;
         } else if (slot == 2) {
             return Slot.AFTERNOON_SLOT;
         }
-        throw new InputMismatchException("Неверный код слота, цифра 1 - с 9 до 13 ч., цифра 2 с 14 до 18 ч.");
+        throw new InputMismatchException("Неверный код слота, цифра 1 - с 9 до 13 ч., цифра 2 - с 14 до 18 ч.");
     }
 
     private LocalDate getBookingDate() throws DateTimeParseException {

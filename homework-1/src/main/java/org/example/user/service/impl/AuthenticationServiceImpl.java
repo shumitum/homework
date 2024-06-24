@@ -1,5 +1,6 @@
 package org.example.user.service.impl;
 
+import lombok.AccessLevel;
 import lombok.Setter;
 import org.example.context.ApplicationContext;
 import org.example.user.model.User;
@@ -12,8 +13,13 @@ import java.util.Scanner;
 @Setter
 public class AuthenticationServiceImpl implements AuthenticationService {
 
+    @Setter(AccessLevel.NONE)
     private User authorizedUser;
-    private UserRepository userRepository = ApplicationContext.getInstance().getUserRepository();
+    private UserRepository userRepository;
+
+    public AuthenticationServiceImpl() {
+        this.userRepository = ApplicationContext.getInstance().getUserRepository();
+    }
 
     @Override
     public void authenticateUser() {

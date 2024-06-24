@@ -22,12 +22,20 @@ import java.util.*;
 public class WorkplaceBookingServiceImpl implements BookingService {
 
     @Setter(AccessLevel.NONE)
-    private int id = 0;
-    private ApplicationContext context = ApplicationContext.getInstance();
-    private AuthenticationService authenticationService = context.getAuthenticationService();
-    private BookingRepository workplaceBookingRepository = context.getWorkplaceBookingRepository();
-    private TimeValidationService timeValidationService = context.getTimeValidationService();
-    private CrudRepository<Workplace> workPlaceRepository = context.getWorkPlaceRepository();
+    private int id;
+    private ApplicationContext context;
+    private AuthenticationService authenticationService;
+    private BookingRepository workplaceBookingRepository;
+    private TimeValidationService timeValidationService;
+    private CrudRepository<Workplace> workPlaceRepository;
+
+    public WorkplaceBookingServiceImpl() {
+        this.context = ApplicationContext.getInstance();
+        this.authenticationService = context.getAuthenticationService();
+        this.workplaceBookingRepository = context.getWorkplaceBookingRepository();
+        this.timeValidationService = context.getTimeValidationService();
+        this.workPlaceRepository = context.getWorkPlaceRepository();
+    }
 
     @Override
     public void createBooking() {

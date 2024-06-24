@@ -8,7 +8,11 @@ import java.util.Scanner;
 
 @Setter
 public class ConferenceHallMenu implements Menu {
-    private ConferenceHallService conferenceHallService = ApplicationContext.getInstance().getConferenceHallService();
+    private ConferenceHallService conferenceHallService;
+
+    public ConferenceHallMenu() {
+        this.conferenceHallService = ApplicationContext.getInstance().getConferenceHallService();
+    }
 
     @Override
     public void handleUserAction() {

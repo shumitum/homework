@@ -15,11 +15,13 @@ import java.util.Scanner;
 @Setter
 public class ConferenceHallServiceImpl implements ConferenceHallService {
 
-    private CrudRepository<ConferenceHall> conferenceHallRepository = ApplicationContext
-            .getInstance().getConferenceHallRepository();
-
     @Setter(AccessLevel.NONE)
-    private int id = 0;
+    private int id;
+    private CrudRepository<ConferenceHall> conferenceHallRepository;
+
+    public ConferenceHallServiceImpl() {
+        this.conferenceHallRepository = ApplicationContext.getInstance().getConferenceHallRepository();
+    }
 
     @Override
     public void createConferenceHall() {

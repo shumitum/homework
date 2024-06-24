@@ -15,10 +15,13 @@ import java.util.Scanner;
 @Setter
 public class WorkPlaceServiceImpl implements WorkPlaceService {
 
-    private CrudRepository<Workplace> workPlaceRepository = ApplicationContext
-            .getInstance().getWorkPlaceRepository();
     @Setter(AccessLevel.NONE)
-    private int id = 0;
+    private int id;
+    private CrudRepository<Workplace> workPlaceRepository;
+
+    public WorkPlaceServiceImpl() {
+        this.workPlaceRepository = ApplicationContext.getInstance().getWorkPlaceRepository();
+    }
 
     @Override
     public void createWorkplace() {
