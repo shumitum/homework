@@ -151,7 +151,7 @@ public class ConferenceHallBookingServiceImpl implements BookingService {
         } catch (InputMismatchException exc) {
             System.out.println("ID конференц-зала должен быть цифрой");
         }
-        throw new NoSuchElementException("рабочего места c введенным ID не существует");
+        throw new NoSuchElementException("конференц-зала c введенным ID не существует");
     }
 
     private String getUserName() {
