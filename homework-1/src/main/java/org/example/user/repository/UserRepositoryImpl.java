@@ -1,8 +1,11 @@
 package org.example.user.repository;
 
+import lombok.Getter;
+
 import java.util.HashMap;
 import java.util.Map;
 
+@Getter
 public class UserRepositoryImpl implements UserRepository {
 
     private final Map<String, String> registeredUser = new HashMap<>();

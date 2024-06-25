@@ -1,7 +1,6 @@
 package org.example.booking.impl.workplace;
 
 import lombok.Getter;
-import lombok.Setter;
 import org.example.booking.BookingRepository;
 import org.example.booking.model.Booking;
 
