@@ -2,27 +2,25 @@ package org.example.user.service.impl;
 
 import lombok.Setter;
 import org.example.context.ApplicationContext;
+import org.example.in.UserInput;
 import org.example.user.repository.UserRepository;
 import org.example.user.service.RegistrationService;
-
-import java.util.Scanner;
 
 @Setter
 public class RegistrationServiceImpl implements RegistrationService {
 
     private UserRepository userRepository;
+    private UserInput userInput;
 
     public RegistrationServiceImpl() {
         this.userRepository = ApplicationContext.getInstance().getUserRepository();
+        this.userInput = ApplicationContext.getInstance().getUserInput();
     }
 
     @Override
     public void registerUser() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Введите имя пользователя:");
-        String userName = scanner.next();
-        System.out.println("Введите пароль:");
-        String password = scanner.next();
+        String userName = userInput.stringInput("Введите имя пользователя:");
+        String password = userInput.stringInput("Введите пароль:");
         userRepository.saveUser(userName, password);
     }
 }

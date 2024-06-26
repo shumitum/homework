@@ -33,43 +33,37 @@ public class PrimaryMenu implements Menu {
             Scanner scanner = new Scanner(System.in);
             String command = scanner.next();
             switch (command.trim()) {
-                case "1":
-                    registrationService.registerUser();
-                    break;
-                case "2":
-                    authenticationService.authenticateUser();
-                    break;
-                case "3":
+                case "1" -> registrationService.registerUser();
+                case "2" -> authenticationService.authenticateUser();
+                case "3" -> {
                     if (authenticationService.checkAuthorizedUserExistence()) {
                         conferenceHallMenu.handleUserAction();
                     } else {
                         return;
                     }
-                    break;
-                case "4":
+                }
+                case "4" -> {
                     if (authenticationService.checkAuthorizedUserExistence()) {
                         workplaceMenu.handleUserAction();
                     } else {
                         printNoSuchCommand();
                     }
-                    break;
-                case "5":
+                }
+                case "5" -> {
                     if (authenticationService.checkAuthorizedUserExistence()) {
                         bookingMenu.handleUserAction();
                     } else {
                         printNoSuchCommand();
                     }
-                    break;
-                case "6":
+                }
+                case "6" -> {
                     if (authenticationService.checkAuthorizedUserExistence()) {
                         return;
                     } else {
                         printNoSuchCommand();
                     }
-                    break;
-                default:
-                    printNoSuchCommand();
-                    break;
+                }
+                default -> printNoSuchCommand();
             }
         }
     }

@@ -26,47 +26,23 @@ public class BookingMenu implements Menu {
             Scanner scanner = new Scanner(System.in);
             String command = scanner.next();
             switch (command.trim()) {
-                case "1":
-                    conferenceHallBookingService.createBooking();
-                    break;
-                case "2":
-                    workplaceBookingService.createBooking();
-                    break;
-                case "3":
-                    conferenceHallBookingService.cancelBooking();
-                    break;
-                case "4":
-                    workplaceBookingService.cancelBooking();
-                    break;
-                case "5":
-                    conferenceHallBookingService.getAvailableSlotsByDate();
-                    break;
-                case "6":
-                    workplaceBookingService.getAvailableSlotsByDate();
-                    break;
-                case "7":
-                    conferenceHallBookingService.getBookingsByDate();
-                    break;
-                case "8":
-                    workplaceBookingService.getBookingsByDate();
-                    break;
-                case "9":
-                    conferenceHallBookingService.getBookingsByUserName();
-                    break;
-                case "10":
-                    workplaceBookingService.getBookingsByUserName();
-                    break;
-                case "11":
-                    System.out.println("Все брони конференц-залов: " + conferenceHallBookingService.getAllBookings());
-                    break;
-                case "12":
-                    System.out.println("Все брони рабочих мест: " + workplaceBookingService.getAllBookings());
-                    break;
-                case "0":
+                case "1" -> conferenceHallBookingService.createBooking();
+                case "2" -> workplaceBookingService.createBooking();
+                case "3" -> conferenceHallBookingService.cancelBooking();
+                case "4" -> workplaceBookingService.cancelBooking();
+                case "5" -> conferenceHallBookingService.getAvailableSlotsByDate();
+                case "6" -> workplaceBookingService.getAvailableSlotsByDate();
+                case "7" -> conferenceHallBookingService.getBookingsByDate();
+                case "8" -> workplaceBookingService.getBookingsByDate();
+                case "9" -> conferenceHallBookingService.getBookingsByUserName();
+                case "10" -> workplaceBookingService.getBookingsByUserName();
+                case "11" -> System.out.println("Все брони конференц-залов: " + conferenceHallBookingService.getAllBookings());
+                case "12" -> System.out.println("Все брони рабочих мест: " + workplaceBookingService.getAllBookings());
+                case "0" -> {
                     return;
-                default:
-                    System.out.println((char) 27 + "[31mИзвините, такой команды не существует." + (char) 27 + "[0m");
-                    break;
+                }
+                default ->
+                        System.out.println((char) 27 + "[31mИзвините, такой команды не существует." + (char) 27 + "[0m");
             }
         }
     }

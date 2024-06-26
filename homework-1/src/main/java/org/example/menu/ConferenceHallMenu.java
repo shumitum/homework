@@ -21,23 +21,14 @@ public class ConferenceHallMenu implements Menu {
             Scanner scanner = new Scanner(System.in);
             String command = scanner.next();
             switch (command.trim()) {
-                case "1":
-                    conferenceHallService.createConferenceHall();
-                    break;
-                case "2":
-                    conferenceHallService.updateConferenceHall();
-                    break;
-                case "3":
-                    conferenceHallService.deleteConferenceHall();
-                    break;
-                case "4":
-                    System.out.println(conferenceHallService.findAllConferenceHalls());
-                    break;
-                case "0":
+                case "1" -> conferenceHallService.createConferenceHall();
+                case "2" -> conferenceHallService.updateConferenceHall();
+                case "3" -> conferenceHallService.deleteConferenceHall();
+                case "4" -> System.out.println(conferenceHallService.findAllConferenceHalls());
+                case "0" -> {
                     return;
-                default:
-                    System.out.println((char) 27 + "[31mИзвините, такой команды не существует." + (char) 27 + "[0m");
-                    break;
+                }
+                default -> System.out.println((char) 27 + "[31mИзвините, такой команды не существует." + (char) 27 + "[0m");
             }
         }
     }

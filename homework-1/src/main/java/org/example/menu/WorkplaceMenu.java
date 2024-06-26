@@ -21,23 +21,14 @@ public class WorkplaceMenu implements Menu {
             Scanner scanner = new Scanner(System.in);
             String command = scanner.next();
             switch (command.trim()) {
-                case "1":
-                    workPlaceService.createWorkplace();
-                    break;
-                case "2":
-                    workPlaceService.updateWorkplace();
-                    break;
-                case "3":
-                    workPlaceService.deleteWorkplace();
-                    break;
-                case "4":
-                    System.out.println(workPlaceService.findAllWorkplaces());
-                    break;
-                case "0":
+                case "1" -> workPlaceService.createWorkplace();
+                case "2" -> workPlaceService.updateWorkplace();
+                case "3" -> workPlaceService.deleteWorkplace();
+                case "4" -> System.out.println(workPlaceService.findAllWorkplaces());
+                case "0" -> {
                     return;
-                default:
-                    System.out.println((char) 27 + "[31mИзвините, такой команды не существует." + (char) 27 + "[0m");
-                    break;
+                }
+                default -> System.out.println((char) 27 + "[31mИзвините, такой команды не существует." + (char) 27 + "[0m");
             }
         }
     }

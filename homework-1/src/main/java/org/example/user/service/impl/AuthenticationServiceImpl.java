@@ -3,12 +3,13 @@ package org.example.user.service.impl;
 import lombok.AccessLevel;
 import lombok.Setter;
 import org.example.context.ApplicationContext;
+import org.example.in.UserInput;
+import org.example.out.OutputMessage;
 import org.example.user.model.User;
 import org.example.user.repository.UserRepository;
 import org.example.user.service.AuthenticationService;
 
 import java.util.NoSuchElementException;
-import java.util.Scanner;
 
 @Setter
 public class AuthenticationServiceImpl implements AuthenticationService {
@@ -16,25 +17,23 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     @Setter(AccessLevel.NONE)
     private User authorizedUser;
     private UserRepository userRepository;
+    private UserInput userInput;
 
     public AuthenticationServiceImpl() {
         this.userRepository = ApplicationContext.getInstance().getUserRepository();
+        this.userInput = ApplicationContext.getInstance().getUserInput();
     }
 
     @Override
     public void authenticateUser() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Введите имя пользователя:");
-        String userName = scanner.next();
-        System.out.println("Введите пароль:");
-        String password = scanner.next();
-
+        String userName = userInput.stringInput("Введите имя пользователя:");
+        String password = userInput.stringInput("Введите пароль:");
         if (userRepository.checkUserCredentials(userName, password)) {
             authorizedUser = new User(userName, password);
-            System.out.printf("Добро пожаловать \"%s\"%n", userName);
+            OutputMessage.printMessage(String.format("Добро пожаловать \"%s\"", userName));
         } else {
             authorizedUser = null;
-            System.out.println((char) 27 + "[31mНеверный логин/пароль" + (char) 27 + "[0m");
+            OutputMessage.printMessage((char) 27 + "[31mНеверный логин/пароль" + (char) 27 + "[0m");
         }
     }
 

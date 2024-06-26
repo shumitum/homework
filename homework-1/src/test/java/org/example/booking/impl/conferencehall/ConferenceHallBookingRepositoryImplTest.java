@@ -5,6 +5,7 @@ import org.example.booking.model.PlaceType;
 import org.example.booking.model.Slot;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -38,6 +39,7 @@ class ConferenceHallBookingRepositoryImplTest {
     }
 
     @Test
+    @DisplayName("Сохранение бронирования")
     void save_whenInvokeWithValidBooking_thenSaveBooking() {
         conferenceHallBookingRepository.save(booking);
 
@@ -49,6 +51,7 @@ class ConferenceHallBookingRepositoryImplTest {
     }
 
     @Test
+    @DisplayName("Сохранение null-бронирования")
     void save_whenInvokeWithNull_thenSaveNothing() {
         conferenceHallBookingRepository.save(null);
 
@@ -59,6 +62,7 @@ class ConferenceHallBookingRepositoryImplTest {
     }
 
     @Test
+    @DisplayName("Удаление бронирования")
     void deleteBooking_whenInvokeWithValidBookingIdAndUserName_thenDeleteBooking() {
         conferenceHallBookingRepository.save(booking);
         Map<Integer, Booking> conferenceHallBookings = conferenceHallBookingRepository.getConferenceHallBookings();
@@ -73,6 +77,7 @@ class ConferenceHallBookingRepositoryImplTest {
     }
 
     @Test
+    @DisplayName("Удаление бронирования с несуществующим именем пользователя")
     void deleteBooking_whenInvokeWithInValidUserName_thenDeleteNothing() {
         conferenceHallBookingRepository.save(booking);
         Map<Integer, Booking> conferenceHallBookings = conferenceHallBookingRepository.getConferenceHallBookings();
@@ -87,6 +92,7 @@ class ConferenceHallBookingRepositoryImplTest {
     }
 
     @Test
+    @DisplayName("Поиск бронирований по имени пользователя")
     void findBookingByUserName_whenInvokeWithValidUserName_thenReturnListOfOnlyBooking() {
         Booking newBooking = Booking.builder()
                 .bookingId(2)
@@ -113,6 +119,7 @@ class ConferenceHallBookingRepositoryImplTest {
     }
 
     @Test
+    @DisplayName("Поиск бронирований по имени пользователя по несуществующему имени")
     void findBookingByUserName_whenInvokeWithInValidUserName_thenReturnEmptyList() {
         conferenceHallBookingRepository.save(booking);
 
@@ -123,6 +130,7 @@ class ConferenceHallBookingRepositoryImplTest {
     }
 
     @Test
+    @DisplayName("Поиск бронирований по дате")
     void findBookingByDate_whenInvokeWithValidDate_thenReturnCorrectBooking() {
         Booking newBooking = Booking.builder()
                 .bookingId(2)
@@ -148,6 +156,7 @@ class ConferenceHallBookingRepositoryImplTest {
     }
 
     @Test
+    @DisplayName("Поиск бронирований по дате на которую ничего не бронировали")
     void findBookingByDate_whenInvokeWithInCorrectDate_thenReturnEmptyList() {
         Booking newBooking = Booking.builder()
                 .bookingId(2)
@@ -172,6 +181,7 @@ class ConferenceHallBookingRepositoryImplTest {
     }
 
     @Test
+    @DisplayName("Поиск всех бронирований")
     void findAllBookings_thenInvoke_thenReturnListOfTwoBookings() {
         Booking newBooking = Booking.builder()
                 .bookingId(2)
@@ -198,6 +208,7 @@ class ConferenceHallBookingRepositoryImplTest {
     }
 
     @Test
+    @DisplayName("Поиск всех бронирований при отсутствии сохраненных броней")
     void findAllBookings_whenInvoke_thenReturnEmptyList() {
         Map<Integer, Booking> conferenceHallBookings = conferenceHallBookingRepository.getConferenceHallBookings();
         assertThat(conferenceHallBookings)

@@ -11,6 +11,7 @@ import org.example.conferencehall.impl.ConferenceHallRepositoryImpl;
 import org.example.conferencehall.impl.ConferenceHallServiceImpl;
 import org.example.conferencehall.model.ConferenceHall;
 import org.example.crud.CrudRepository;
+import org.example.in.UserInput;
 import org.example.menu.BookingMenu;
 import org.example.menu.ConferenceHallMenu;
 import org.example.menu.Menu;
@@ -46,8 +47,16 @@ public class ApplicationContext {
     private BookingRepository workplaceBookingRepository;
     private BookingRepository conferenceHallBookingRepository;
     private TimeValidationService timeValidationService;
+    private UserInput userInput;
 
     private ApplicationContext() {
+    }
+
+    public UserInput getUserInput() {
+        if (userInput == null) {
+            userInput = new UserInput();
+        }
+        return userInput;
     }
 
     public TimeValidationService getTimeValidationService() {
