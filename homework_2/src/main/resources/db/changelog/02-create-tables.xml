@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd"
+        logicalFilePath="db/changelog-master.yaml">
+    <changeSet id="02-create-tables" author="shumitum">
+        <createSequence schemaName="data" sequenceName="user_sequence" startValue="1" incrementBy="1"/>
+        <createSequence schemaName="data" sequenceName="workplace_sequence" startValue="1" incrementBy="1"/>
+        <createSequence schemaName="data" sequenceName="conference_hall_sequence" startValue="1" incrementBy="1"/>
+        <createSequence schemaName="data" sequenceName="booking_sequence" startValue="1" incrementBy="1"/>
+
+        <createTable schemaName="data" tableName="users">
+            <column name="user_id" type="INT" defaultValueComputed="nextval('data.user_sequence')">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="user_name" type="VARCHAR(20)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="password" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable schemaName="data" tableName="workplaces">
+            <column name="workplace_id" type="INT" defaultValueComputed="nextval('data.workplace_sequence')">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="workplace_floor" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable schemaName="data" tableName="conference_halls">
+            <column name="conference_hall_id" type="INT"
+                    defaultValueComputed="nextval('data.conference_hall_sequence')">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="conference_hall_name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable schemaName="data" tableName="bookings">
+            <column name="conference_hall_id" type="INT" defaultValueComputed="nextval('data.booking_sequence')">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="booking_date" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="slot" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="place_type" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="booker_name" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="place_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
