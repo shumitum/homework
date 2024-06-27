@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - changeSet:
+      id: 01-create-schema
+      author: shumitum
+      changes:
+        - sql:
+            sql: CREATE SCHEMA IF NOT EXISTS data
