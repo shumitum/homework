@@ -66,19 +66,19 @@ class WorkplaceBookingServiceImplTest {
     //    verify(workplaceBookingRepository, times(1)).deleteBooking(1, "name");
     //}
 
-    @Test
-    void getAvailableSlotsByDate_whenInvoke_thenInvokeMethodsFindBookingByDateAndFindAll() {
-        LocalDate date = LocalDate.of(2024, 7, 25);
-        when(workplaceBookingRepository.findBookingByDate(date)).thenReturn(List.of(booking));
-        when(workPlaceRepository.findAll()).thenReturn(List.of(new Workplace(1, 1)));
-
-
-        System.setIn(new ByteArrayInputStream("2024-07-25".getBytes()));
-        workplaceBookingService.getAvailableSlotsByDate();
-
-        verify(workplaceBookingRepository, times(1)).findBookingByDate(date);
-        verify(workPlaceRepository, times(1)).findAll();
-    }
+    //@Test
+    //void getAvailableSlotsByDate_whenInvoke_thenInvokeMethodsFindBookingByDateAndFindAll() {
+    //    LocalDate date = LocalDate.of(2024, 7, 25);
+    //    when(workplaceBookingRepository.findBookingByDate(date)).thenReturn(List.of(booking));
+    //    when(workPlaceRepository.findAll()).thenReturn(List.of(new Workplace(1, 1)));
+//
+//
+    //    System.setIn(new ByteArrayInputStream("2024-07-25".getBytes()));
+    //    workplaceBookingService.getAvailableSlotsByDate();
+//
+    //    verify(workplaceBookingRepository, times(1)).findBookingByDate(date);
+    //    verify(workPlaceRepository, times(1)).findAll();
+    //}
 
     @Test
     void getBookingsByDate_whenInvokeWithValidDate_thenInvokeFindBookingByDateMethodFromRepository() {

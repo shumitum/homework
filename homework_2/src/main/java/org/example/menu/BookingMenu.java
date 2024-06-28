@@ -1,7 +1,8 @@
 package org.example.menu;
 
 import lombok.Setter;
-import org.example.booking.BookingService;
+import org.example.booking.controller.ConferenceHallBookingController;
+import org.example.booking.controller.WorkplaceBookingController;
 import org.example.context.ApplicationContext;
 
 import java.util.Scanner;
@@ -10,13 +11,13 @@ import java.util.Scanner;
 public class BookingMenu implements Menu {
 
     private ApplicationContext context;
-    private BookingService workplaceBookingService;
-    private BookingService conferenceHallBookingService;
+    private WorkplaceBookingController workplaceBookingController;
+    private ConferenceHallBookingController conferenceHallBookingController;
 
     public BookingMenu() {
         this.context = ApplicationContext.getInstance();
-        this.workplaceBookingService = context.getWorkplaceBookingService();
-        this.conferenceHallBookingService = context.getConferenceHallBookingService();
+        this.workplaceBookingController = context.getWorkplaceBookingController();
+        this.conferenceHallBookingController = context.getConferenceHallBookingController();
     }
 
     @Override
@@ -26,18 +27,18 @@ public class BookingMenu implements Menu {
             Scanner scanner = new Scanner(System.in);
             String command = scanner.next();
             switch (command.trim()) {
-                case "1" -> conferenceHallBookingService.createBooking();
-                case "2" -> workplaceBookingService.createBooking();
-                case "3" -> conferenceHallBookingService.cancelBooking();
-                case "4" -> workplaceBookingService.cancelBooking();
-                case "5" -> conferenceHallBookingService.getAvailableSlotsByDate();
-                case "6" -> workplaceBookingService.getAvailableSlotsByDate();
-                case "7" -> conferenceHallBookingService.getBookingsByDate();
-                case "8" -> workplaceBookingService.getBookingsByDate();
-                case "9" -> conferenceHallBookingService.getBookingsByUserName();
-                case "10" -> workplaceBookingService.getBookingsByUserName();
-                case "11" -> System.out.println("Все брони конференц-залов: " + conferenceHallBookingService.getAllBookings());
-                case "12" -> System.out.println("Все брони рабочих мест: " + workplaceBookingService.getAllBookings());
+                case "1" -> conferenceHallBookingController.createBooking();
+                case "2" -> workplaceBookingController.createBooking();
+                case "3" -> conferenceHallBookingController.cancelBooking();
+                case "4" -> workplaceBookingController.cancelBooking();
+                case "5" -> conferenceHallBookingController.getAvailableSlotsByDate();
+                case "6" -> workplaceBookingController.getAvailableSlotsByDate();
+                case "7" -> conferenceHallBookingController.getBookingsByDate();
+                case "8" -> workplaceBookingController.getBookingsByDate();
+                case "9" -> conferenceHallBookingController.getBookingsByUserName();
+                case "10" -> workplaceBookingController.getBookingsByUserName();
+                case "11" -> conferenceHallBookingController.getAllBookings();
+                case "12" -> workplaceBookingController.getAllBookings();
                 case "0" -> {
                     return;
                 }

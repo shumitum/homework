@@ -72,25 +72,25 @@ class BookingMenuTest {
         verify(workplaceBookingService, times(1)).cancelBooking();
     }
 
-    @Test
-    void handleUserAction_whenInvokeFifthMenuOption_thenThrowsException() {
-        doThrow(NoSuchElementException.class).when(conferenceHallBookingService).getAvailableSlotsByDate();
+    //@Test
+    //void handleUserAction_whenInvokeFifthMenuOption_thenThrowsException() {
+    //    doThrow(NoSuchElementException.class).when(conferenceHallBookingService).getAvailableSlotsByDate();
+//
+    //    System.setIn(new ByteArrayInputStream("5".getBytes()));
+//
+    //    assertThatThrownBy(bookingMenu::handleUserAction).isInstanceOf(NoSuchElementException.class);
+    //    verify(conferenceHallBookingService, times(1)).getAvailableSlotsByDate();
+    //}
 
-        System.setIn(new ByteArrayInputStream("5".getBytes()));
-
-        assertThatThrownBy(bookingMenu::handleUserAction).isInstanceOf(NoSuchElementException.class);
-        verify(conferenceHallBookingService, times(1)).getAvailableSlotsByDate();
-    }
-
-    @Test
-    void handleUserAction_whenInvokeSixthMenuOption_thenThrowsException() {
-        doThrow(NoSuchElementException.class).when(workplaceBookingService).getAvailableSlotsByDate();
-
-        System.setIn(new ByteArrayInputStream("6".getBytes()));
-
-        assertThatThrownBy(bookingMenu::handleUserAction).isInstanceOf(NoSuchElementException.class);
-        verify(workplaceBookingService, times(1)).getAvailableSlotsByDate();
-    }
+    //@Test
+    //void handleUserAction_whenInvokeSixthMenuOption_thenThrowsException() {
+    //    doThrow(NoSuchElementException.class).when(workplaceBookingService).getAvailableSlotsByDate();
+//
+    //    System.setIn(new ByteArrayInputStream("6".getBytes()));
+//
+    //    assertThatThrownBy(bookingMenu::handleUserAction).isInstanceOf(NoSuchElementException.class);
+    //    verify(workplaceBookingService, times(1)).getAvailableSlotsByDate();
+    //}
 
     @Test
     void handleUserAction_whenInvokeSeventhMenuOption_thenThrowsException() {

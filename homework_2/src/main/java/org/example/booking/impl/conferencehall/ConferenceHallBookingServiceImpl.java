@@ -1,6 +1,5 @@
 package org.example.booking.impl.conferencehall;
 
-import lombok.AccessLevel;
 import lombok.Setter;
 import org.example.booking.BookingRepository;
 import org.example.booking.BookingService;
@@ -11,6 +10,7 @@ import org.example.conferencehall.model.ConferenceHall;
 import org.example.context.ApplicationContext;
 import org.example.crud.CrudRepository;
 import org.example.exception.SlotValidationException;
+import org.example.in.UserInput;
 import org.example.user.service.AuthenticationService;
 import org.example.validation.TimeValidationService;
 
@@ -21,8 +21,6 @@ import java.util.*;
 @Setter
 public class ConferenceHallBookingServiceImpl implements BookingService {
 
-    @Setter(AccessLevel.NONE)
-    private int id;
     private ApplicationContext context;
     private AuthenticationService authenticationService;
     private BookingRepository conferenceHallBookingRepository;
@@ -40,13 +38,12 @@ public class ConferenceHallBookingServiceImpl implements BookingService {
     @Override
     public void createBooking() {
         try {
-            LocalDate date = getBookingDate();
+            LocalDate date = UserInput.dateInput();
             timeValidationService.checkBookingIsNotBeforeNow(date);
             Slot slot = getSlot();
             Integer placeId = getPlaceId();
             checkBookingConflict(slot, date, placeId);
             final Booking booking = Booking.builder()
-                    .bookingId(++id)
                     .bookingDate(date)
                     .slot(slot)
                     .placeType(PlaceType.CONFERENCE_HALL)
@@ -61,10 +58,8 @@ public class ConferenceHallBookingServiceImpl implements BookingService {
 
     @Override
     public void cancelBooking() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Введите ID бронирования конференц-зала");
         try {
-            int conferenceHallId = scanner.nextInt();
+            int conferenceHallId = UserInput.digitInput("Введите ID бронирования конференц-зала");
             String userName = authenticationService.getAuthorizedUser().getUserName();
             conferenceHallBookingRepository.deleteBooking(conferenceHallId, userName);
         } catch (InputMismatchException exc) {
@@ -73,10 +68,9 @@ public class ConferenceHallBookingServiceImpl implements BookingService {
     }
 
     @Override
-    public void getAvailableSlotsByDate() {
+    public Map<Integer, List<Slot>> getAvailableSlotsByDate(LocalDate date) {
+        Map<Integer, List<Slot>> availableSlotsByPlaceId = new HashMap<>();
         try {
-            LocalDate date = getBookingDate();
-            Map<Integer, List<Slot>> availableSlotsByPlaceId = new HashMap<>();
             List<Booking> bookingsByDate = conferenceHallBookingRepository.findBookingByDate(date);
             List<Integer> conferenceHallIds = conferenceHallRepository.findAll().stream()
                     .map(ConferenceHall::getConferenceHallId)
@@ -94,47 +88,27 @@ public class ConferenceHallBookingServiceImpl implements BookingService {
                     }
                 }
             }
-            System.out.println(String.format("Доступные слоты на %s, conferenceHallID=[slot]: %s : ", date, availableSlotsByPlaceId));
         } catch (RuntimeException exc) {
             System.out.println(exc.getMessage());
         }
+        return availableSlotsByPlaceId;
     }
 
     @Override
-    public void getBookingsByDate() {
-        System.out.println("Брони на указанную дату: " + conferenceHallBookingRepository.findBookingByDate(getBookingDate()));
+    public List<Booking> getBookingsByDate() throws DateTimeParseException {
+        LocalDate date = UserInput.dateInput();
+        return conferenceHallBookingRepository.findBookingByDate(date);
     }
 
     @Override
-    public void getBookingsByUserName() {
-        String userName = getUserName();
-        System.out.println(
-                String.format("Брони пользователя %s: %s ",
-                        userName, conferenceHallBookingRepository.findBookingByUserName(userName)));
+    public List<Booking> getBookingsByUserName() {
+        String userName = UserInput.stringInput("Введите имя пользователя:");
+        return conferenceHallBookingRepository.findBookingByUserName(userName);
     }
 
     @Override
     public List<Booking> getAllBookings() {
         return conferenceHallBookingRepository.findAllBookings();
-    }
-
-    private Slot getSlot() throws InputMismatchException {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Выберите слот: цифра 1 - с 9 до 13 ч., цифра 2 - с 14 до 18 ч.");
-        int slot = scanner.nextInt();
-        if (slot == 1) {
-            return Slot.MORNING_SLOT;
-        } else if (slot == 2) {
-            return Slot.AFTERNOON_SLOT;
-        }
-        throw new InputMismatchException("Неверный код слота, цифра 1 - с 9 до 13 ч., цифра 2 - с 14 до 18 ч.");
-    }
-
-    private LocalDate getBookingDate() throws DateTimeParseException {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Введите дату в формате гггг-мм-дд:");
-        String inputDate = scanner.next();
-        return LocalDate.parse(inputDate);
     }
 
     private void checkBookingConflict(Slot slot, LocalDate date, Integer placeId) {
@@ -149,10 +123,8 @@ public class ConferenceHallBookingServiceImpl implements BookingService {
     }
 
     private Integer getPlaceId() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Введите ID конференц-зала");
         try {
-            int conferenceHallId = scanner.nextInt();
+            int conferenceHallId = UserInput.digitInput("Введите ID конференц-зала");
             if (conferenceHallRepository.existsById(conferenceHallId)) {
                 return conferenceHallId;
             }
@@ -162,9 +134,13 @@ public class ConferenceHallBookingServiceImpl implements BookingService {
         throw new NoSuchElementException("конференц-зала c введенным ID не существует");
     }
 
-    private String getUserName() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Введите имя пользователя:");
-        return scanner.next();
+    private Slot getSlot() throws InputMismatchException {
+        int slot = UserInput.digitInput("Выберите слот: цифра 1 - с 9 до 13 ч., цифра 2 - с 14 до 18 ч.");
+        if (slot == 1) {
+            return Slot.MORNING_SLOT;
+        } else if (slot == 2) {
+            return Slot.AFTERNOON_SLOT;
+        }
+        throw new InputMismatchException("Неверный код слота, цифра 1 - с 9 до 13 ч., цифра 2 - с 14 до 18 ч.");
     }
 }

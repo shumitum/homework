@@ -55,10 +55,4 @@ public class UserRepositoryImpl implements UserRepository {
         }
         return Optional.empty();
     }
-
-    //@Override
-    //public boolean checkUserCredentials(String userName, String password) {
-    //    return true; //registeredUser.containsKey(userName) && registeredUser.get(userName).equals(password);
-//
-    //}
 }

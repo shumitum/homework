@@ -2,6 +2,8 @@ package org.example.context;
 
 import org.example.booking.BookingRepository;
 import org.example.booking.BookingService;
+import org.example.booking.controller.ConferenceHallBookingController;
+import org.example.booking.controller.WorkplaceBookingController;
 import org.example.booking.impl.conferencehall.ConferenceHallBookingRepositoryImpl;
 import org.example.booking.impl.conferencehall.ConferenceHallBookingServiceImpl;
 import org.example.booking.impl.workplace.WorkplaceBookingRepositoryImpl;
@@ -48,8 +50,24 @@ public class ApplicationContext {
     private BookingRepository conferenceHallBookingRepository;
     private TimeValidationService timeValidationService;
     private UserInput userInput;
+    private WorkplaceBookingController workplaceBookingController;
+    private ConferenceHallBookingController conferenceHallBookingController;
 
     private ApplicationContext() {
+    }
+
+    public ConferenceHallBookingController getConferenceHallBookingController() {
+        if (conferenceHallBookingController == null) {
+            conferenceHallBookingController = new ConferenceHallBookingController();
+        }
+        return conferenceHallBookingController;
+    }
+
+    public WorkplaceBookingController getWorkplaceBookingController() {
+        if (workplaceBookingController == null) {
+            workplaceBookingController = new WorkplaceBookingController();
+        }
+        return workplaceBookingController;
     }
 
     public UserInput getUserInput() {

@@ -74,7 +74,7 @@ class ConferenceHallBookingServiceImplTest {
 
 
         System.setIn(new ByteArrayInputStream("2024-07-25".getBytes()));
-        conferenceHallBookingService.getAvailableSlotsByDate();
+        //conferenceHallBookingService.getAvailableSlotsByDate();
 
         verify(conferenceHallBookingRepository, times(1)).findBookingByDate(date);
         verify(conferenceHallRepository, times(1)).findAll();

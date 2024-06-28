@@ -1,19 +1,22 @@
 package org.example.booking;
 
 import org.example.booking.model.Booking;
+import org.example.booking.model.Slot;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 public interface BookingService {
     void createBooking();
 
     void cancelBooking();
 
-    void getAvailableSlotsByDate();
+    Map<Integer, List<Slot>> getAvailableSlotsByDate(LocalDate date);
 
-    void getBookingsByDate();
+    List<Booking> getBookingsByDate();
 
-    void getBookingsByUserName();
+    List<Booking> getBookingsByUserName();
 
     List<Booking> getAllBookings();
 
