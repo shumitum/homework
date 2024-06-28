@@ -43,7 +43,7 @@
         </createTable>
 
         <createTable schemaName="data" tableName="bookings">
-            <column name="conference_hall_id" type="INT" defaultValueComputed="nextval('data.seq_booking_id')">
+            <column name="booking_id" type="INT" defaultValueComputed="nextval('data.seq_booking_id')">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="booking_date" type="date">

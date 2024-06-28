@@ -1,22 +1,20 @@
 package org.example.conferencehall.impl;
 
-import lombok.AccessLevel;
 import lombok.Setter;
 import org.example.conferencehall.ConferenceHallService;
 import org.example.conferencehall.model.ConferenceHall;
 import org.example.context.ApplicationContext;
 import org.example.crud.CrudRepository;
+import org.example.in.UserInput;
+import org.example.out.Output;
 
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Scanner;
 
 @Setter
 public class ConferenceHallServiceImpl implements ConferenceHallService {
 
-    @Setter(AccessLevel.NONE)
-    private int id;
     private CrudRepository<ConferenceHall> conferenceHallRepository;
 
     public ConferenceHallServiceImpl() {
@@ -25,47 +23,38 @@ public class ConferenceHallServiceImpl implements ConferenceHallService {
 
     @Override
     public void createConferenceHall() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Введите имя конференц-зала:");
-        String name = scanner.next();
-        ConferenceHall conferenceHall = new ConferenceHall(++id, name);
-        conferenceHallRepository.save(conferenceHall);
+        String name = UserInput.stringInput("Введите имя конференц-зала:");
+        conferenceHallRepository.save(new ConferenceHall(null, name));
     }
-
 
     @Override
     public void updateConferenceHall() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Введите ID редактируемого конф.-зала:");
         try {
-            Integer placeId = scanner.nextInt();
-            System.out.println("Введите новое имя конф.-зала:");
-            String name = scanner.next();
-            ConferenceHall conferenceHall = new ConferenceHall(placeId, name);
-            conferenceHallRepository.update(conferenceHall);
+            Integer placeId = UserInput.digitInput("Введите ID редактируемого конф.-зала:");
+            String name = UserInput.stringInput("Введите новое имя конф.-зала:");
+            conferenceHallRepository.update(new ConferenceHall(placeId, name));
         } catch (InputMismatchException e) {
-            System.out.println("ID конф.-зала должен быть цифрой");
+            Output.printMessage("ID конф.-зала должен быть цифрой");
         } catch (NoSuchElementException e) {
-            System.out.println(e.getMessage());
+            Output.printMessage(e.getMessage());
         }
     }
 
     @Override
     public void deleteConferenceHall() {
-        Scanner scanner = new Scanner(System.in);
         try {
-            System.out.println("Введите ID удаляемого конф.-зала:");
-            Integer conferenceHallId = scanner.nextInt();
+            Integer conferenceHallId = UserInput.digitInput("Введите ID удаляемого конф.-зала:");
             conferenceHallRepository.delete(conferenceHallId);
         } catch (InputMismatchException e) {
-            System.out.println("ID конф.-зала должен быть цифрой");
+            Output.printMessage("ID конф.-зала должен быть цифрой");
         } catch (NoSuchElementException e) {
-            System.out.println(e.getMessage());
+            Output.printMessage(e.getMessage());
         }
     }
 
     @Override
     public List<ConferenceHall> findAllConferenceHalls() {
+        Output.printMessage("Список всех конференц-залов: ");
         return conferenceHallRepository.findAll();
     }
 }

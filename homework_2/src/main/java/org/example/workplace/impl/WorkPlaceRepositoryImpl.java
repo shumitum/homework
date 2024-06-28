@@ -39,9 +39,9 @@ public class WorkPlaceRepositoryImpl implements CrudRepository<Workplace> {
     @Override
     public void update(Workplace workplace) {
         if (existsById(workplace.getWorkplaceId())) {
-            String newWorkplace = "UPDATE data.workplaces SET floor = ?  WHERE workplace_id = ?";
+            String updWorkplace = "UPDATE data.workplaces SET floor = ?  WHERE workplace_id = ?";
             try (Connection connection = DbConnection.getConnection();
-                 PreparedStatement preparedStatement = connection.prepareStatement(newWorkplace)) {
+                 PreparedStatement preparedStatement = connection.prepareStatement(updWorkplace)) {
                 connection.setAutoCommit(false);
                 preparedStatement.setInt(1, workplace.getFloor());
                 preparedStatement.setInt(2, workplace.getWorkplaceId());
