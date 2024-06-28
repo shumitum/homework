@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd"
+        logicalFilePath="db/changelog-master.yaml">
+    <changeSet id="03-fill-tables" author="shumitum">
+
+        <insert schemaName="data" tableName="users">
+            <column name="user_name" value="qwe"/>
+            <column name="password" value="qwe"/>
+        </insert>
+
+        <insert schemaName="data" tableName="workplaces">
+            <column name="floor" value="1"/>
+        </insert>
+
+        <insert schemaName="data" tableName="conference_halls">
+            <column name="conference_hall_name" value="cool name"/>
+        </insert>
+
+    </changeSet>
+</databaseChangeLog>

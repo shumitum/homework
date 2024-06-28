@@ -42,7 +42,6 @@ public class UserRepositoryImpl implements UserRepository {
             preparedStatement.setString(1, userName);
             preparedStatement.setString(2, password);
             ResultSet resultSet = preparedStatement.executeQuery();
-
             if (resultSet.next()) {
                 User user = User.builder()
                         .id(resultSet.getInt("user_id"))

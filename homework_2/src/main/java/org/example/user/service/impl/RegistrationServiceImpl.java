@@ -10,17 +10,15 @@ import org.example.user.service.RegistrationService;
 public class RegistrationServiceImpl implements RegistrationService {
 
     private UserRepository userRepository;
-    private UserInput userInput;
 
     public RegistrationServiceImpl() {
         this.userRepository = ApplicationContext.getInstance().getUserRepository();
-        this.userInput = ApplicationContext.getInstance().getUserInput();
     }
 
     @Override
     public void registerUser() {
-        String userName = userInput.stringInput("Введите имя пользователя:");
-        String password = userInput.stringInput("Введите пароль:");
+        String userName = UserInput.stringInput("Введите имя пользователя:");
+        String password = UserInput.stringInput("Введите пароль:");
         userRepository.saveUser(userName, password);
     }
 }

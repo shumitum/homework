@@ -4,22 +4,19 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class UserInput {
-    Scanner scanner;
 
-    public UserInput() {
-        this.scanner = new Scanner(System.in);
-    }
-
-    public Integer digitInput(String consoleMessage) throws InputMismatchException {
-        if (consoleMessage != null) {
-            System.out.println(consoleMessage);
+    public static Integer digitInput(String message) throws InputMismatchException {
+        Scanner scanner = new Scanner(System.in);
+        if (message != null && !message.isEmpty()) {
+            System.out.println(message);
         }
         return scanner.nextInt();
     }
 
-    public String stringInput(String consoleMessage) {
-        if (consoleMessage != null) {
-            System.out.println(consoleMessage);
+    public static String stringInput(String message) {
+        Scanner scanner = new Scanner(System.in);
+        if (message != null && !message.isEmpty()) {
+            System.out.println(message);
         }
         return scanner.next();
     }

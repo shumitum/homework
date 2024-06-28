@@ -18,17 +18,15 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     @Setter(AccessLevel.NONE)
     private User authorizedUser;
     private UserRepository userRepository;
-    private UserInput userInput;
 
     public AuthenticationServiceImpl() {
         this.userRepository = ApplicationContext.getInstance().getUserRepository();
-        this.userInput = ApplicationContext.getInstance().getUserInput();
     }
 
     @Override
     public void authenticateUser() {
-        String userName = userInput.stringInput("Введите имя пользователя:");
-        String password = userInput.stringInput("Введите пароль:");
+        String userName = UserInput.stringInput("Введите имя пользователя:");
+        String password = UserInput.stringInput("Введите пароль:");
         Optional<User> user = userRepository.findUserByCredentials(userName, password);
         if (user.isPresent()) {
             authorizedUser = user.get();

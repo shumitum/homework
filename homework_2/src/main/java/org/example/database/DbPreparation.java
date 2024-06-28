@@ -24,7 +24,7 @@ public class DbPreparation {
                     DatabaseFactory.getInstance().findCorrectDatabaseImplementation(new JdbcConnection(connection));
             database.setLiquibaseSchemaName(liquibaseSchemaName);
             Liquibase liquibase =
-                    new Liquibase("db/changelog/changelog-master.yaml", new ClassLoaderResourceAccessor(), database);
+                    new Liquibase(AppProperties.getProperty("liquibase.changelogPath"), new ClassLoaderResourceAccessor(), database);
             liquibase.update();
         } catch (LiquibaseException exc) {
             System.out.println("SQL Exception in migration " + exc.getMessage());
@@ -34,7 +34,8 @@ public class DbPreparation {
     }
 
     private static void createSchema(String schemaName, Connection connection) throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement("CREATE SCHEMA IF NOT EXISTS " + schemaName);
-        preparedStatement.executeUpdate();
+        try (PreparedStatement preparedStatement = connection.prepareStatement("CREATE SCHEMA IF NOT EXISTS " + schemaName)) {
+            preparedStatement.executeUpdate();
+        }
     }
 }
