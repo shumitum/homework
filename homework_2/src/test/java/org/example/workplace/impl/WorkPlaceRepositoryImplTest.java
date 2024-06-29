@@ -4,6 +4,7 @@ import org.example.testcontainer.TestContainer;
 import org.example.workplace.model.Workplace;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
@@ -32,6 +33,7 @@ class WorkPlaceRepositoryImplTest {
     }
 
     @Test
+    @DisplayName("Найти все рабочие места")
     void findAll_whenInvoke_thenReturnEmptyList() {
         List<Workplace> all = workPlaceRepository.findAll();
 
@@ -41,6 +43,7 @@ class WorkPlaceRepositoryImplTest {
     }
 
     /*@Test
+    @DisplayName("")
     void save_whenInvokeWithValidWorkplace_thenSaveWorkplace() {
         workPlaceRepository.save(workplace);
 
@@ -51,6 +54,7 @@ class WorkPlaceRepositoryImplTest {
     }
 
     @Test
+    @DisplayName("")
     void save_whenInvokeWithNull_thenDontSaveWorkplace() {
         workPlaceRepository.save(null);
 
@@ -61,6 +65,7 @@ class WorkPlaceRepositoryImplTest {
     }
 
     @Test
+    @DisplayName("")
     void update_whenInvokeWithValidWorkPlaceId_thenUpdateWorkplace() {
         workPlaceRepository.save(workplace);
         Workplace updatedWorkplace = new Workplace(1, 4);
@@ -74,6 +79,7 @@ class WorkPlaceRepositoryImplTest {
     }
 
     @Test
+    @DisplayName("")
     void update_whenInvokeWithNonExistsWorkplace_thenThrowsException() {
         workPlaceRepository.save(workplace);
         Workplace updatedWorkplace = new Workplace(2, 4);
@@ -82,6 +88,7 @@ class WorkPlaceRepositoryImplTest {
     }
 
     @Test
+    @DisplayName("")
     void delete_whenInvokeWithValidWorkPlaceId_thenDeleteWorkplace() {
         workPlaceRepository.save(workplace);
 
@@ -94,6 +101,7 @@ class WorkPlaceRepositoryImplTest {
     }
 
     @Test
+    @DisplayName("")
     void delete_whenInvokeWithInvalidWorkPlaceId_thenThrowsException() {
         workPlaceRepository.save(workplace);
 
@@ -101,6 +109,7 @@ class WorkPlaceRepositoryImplTest {
     }
 
     @Test
+    @DisplayName("")
     void findAll_whenInvoke_then_returnListOfTwoWorkplaces() {
         workPlaceRepository.save(workplace);
         workPlaceRepository.save(new Workplace(2, 2));
@@ -112,6 +121,7 @@ class WorkPlaceRepositoryImplTest {
     }
 
     @Test
+    @DisplayName("")
     void existsById_whenInvokeWithValidWorkPlaceId_thenReturnTrue() {
         workPlaceRepository.save(workplace);
 
@@ -122,6 +132,7 @@ class WorkPlaceRepositoryImplTest {
     }
 
     @Test
+    @DisplayName("")
     void existsById_whenInvokeWithInvalidWorkPlaceId_thenReturnFalse() {
         workPlaceRepository.save(workplace);
 

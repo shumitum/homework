@@ -3,6 +3,7 @@ package org.example.user.repository;
 import org.example.testcontainer.TestContainer;
 import org.example.user.model.User;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
@@ -26,6 +27,7 @@ class UserRepositoryImplTest {
     }
 
 /*    @Test
+    @DisplayName("")
     void saveUser_whenInvoke_thenSaveUserCredentials() {
         Map<String, String> registeredUsers = userRepository.getRegisteredUser();
         assertThat(registeredUsers)
@@ -39,6 +41,7 @@ class UserRepositoryImplTest {
     }*/
 
     /*@Test
+    @DisplayName("")
     void saveUser_whenInvokeWithAlreadyExistUser_thenNotSaveUserCredentials() {
         userRepository.saveUser("name", "password");
         Map<String, String> registeredUsers = userRepository.getRegisteredUser();
@@ -56,6 +59,7 @@ class UserRepositoryImplTest {
     }*/
 
     @Test
+    @DisplayName("")
     void checkUserCredentials_whenInvokeWithExistsCredentials_thenReturnUser() {
         Optional<User> userByCredentials = userRepository.findUserByCredentials("qwe", "qwe");
 
@@ -65,6 +69,7 @@ class UserRepositoryImplTest {
     }
 
     @Test
+    @DisplayName("")
     void checkUserCredentials_whenInvokeWithNonExistsCredentials_thenReturnFalse() {
         Optional<User> userByCredentials = userRepository.findUserByCredentials("xcv", "xcv");
 

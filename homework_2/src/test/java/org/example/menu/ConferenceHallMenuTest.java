@@ -3,6 +3,7 @@ package org.example.menu;
 import org.example.conferencehall.ConferenceHallService;
 import org.example.conferencehall.impl.ConferenceHallServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -28,6 +29,7 @@ class ConferenceHallMenuTest {
     }
 
     @Test
+    @DisplayName("")
     void handleUserAction_whenInvokeFirstMenuOption_thenThrowsException() {
         doThrow(NoSuchElementException.class).when(conferenceHallService).createConferenceHall();
 
@@ -38,6 +40,7 @@ class ConferenceHallMenuTest {
     }
 
     @Test
+    @DisplayName("")
     void handleUserAction_whenInvokeSecondMenuOption_thenThrowsException() {
         doThrow(NoSuchElementException.class).when(conferenceHallService).updateConferenceHall();
 
@@ -48,6 +51,7 @@ class ConferenceHallMenuTest {
     }
 
     @Test
+    @DisplayName("")
     void handleUserAction_whenInvokeThirdMenuOption_thenThrowsException() {
         doThrow(NoSuchElementException.class).when(conferenceHallService).deleteConferenceHall();
 
@@ -58,6 +62,7 @@ class ConferenceHallMenuTest {
     }
 
     @Test
+    @DisplayName("")
     void handleUserAction_whenInvokeFourthMenuOption_thenThrowsException() {
         doThrow(NoSuchElementException.class).when(conferenceHallService).findAllConferenceHalls();
 

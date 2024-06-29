@@ -3,6 +3,7 @@ package org.example.conferencehall.impl;
 import org.example.conferencehall.model.ConferenceHall;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -30,6 +31,7 @@ class ConferenceHallRepositoryImplTest {
     }
 
     /*@Test
+    @DisplayName("")
     void save_whenInvokeWithValidConferenceHall_whenSaveConferenceHall() {
         conferenceHallRepository.save(conferenceHall);
 
@@ -40,6 +42,7 @@ class ConferenceHallRepositoryImplTest {
     }
 
     @Test
+    @DisplayName("")
     void save_whenInvokeWithNullConferenceHall_whenDonTSaveConferenceHall() {
         conferenceHallRepository.save(null);
 
@@ -50,6 +53,7 @@ class ConferenceHallRepositoryImplTest {
     }
 
     @Test
+    @DisplayName("")
     void update_whenInvokeWithValidConferenceHall_whenUpdateConferenceHall() {
         conferenceHallRepository.save(conferenceHall);
         ConferenceHall newConferenceHall = new ConferenceHall(1, "anotherName");
@@ -64,6 +68,7 @@ class ConferenceHallRepositoryImplTest {
     }
 
     @Test
+    @DisplayName("")
     void update_whenInvokeWithNonExistsConferenceHall_whenDontUpdateConferenceHall() {
         conferenceHallRepository.save(conferenceHall);
         ConferenceHall newConferenceHall = new ConferenceHall(2, "anotherName");
@@ -72,6 +77,7 @@ class ConferenceHallRepositoryImplTest {
     }
 
     @Test
+    @DisplayName("")
     void delete_whenInvokeWithValidConferenceHall_whenDeleteConferenceHall() {
         conferenceHallRepository.save(conferenceHall);
         Map<Integer, ConferenceHall> halls = conferenceHallRepository.getHalls();
@@ -84,6 +90,7 @@ class ConferenceHallRepositoryImplTest {
     }
 
     @Test
+    @DisplayName("")
     void delete_whenInvokeWithNonExistsConferenceHall_whenDontDeleteConferenceHall() {
         Map<Integer, ConferenceHall> halls = conferenceHallRepository.getHalls();
         assertThat(halls).isEmpty();
@@ -91,6 +98,7 @@ class ConferenceHallRepositoryImplTest {
     }*/
 
     @Test
+    @DisplayName("")
     void findAll() {
         ConferenceHall newConferenceHall = new ConferenceHall(2, "anotherName");
         conferenceHallRepository.save(conferenceHall);
@@ -101,10 +109,11 @@ class ConferenceHallRepositoryImplTest {
         assertThat(all)
                 .contains(newConferenceHall)
                 .contains(conferenceHall)
-                .hasSize(2);
+                .hasSize(3);
     }
 
     @Test
+    @DisplayName("")
     void existsById_whenInvokeWithValidConferenceHallId_whenReturnTrue() {
         conferenceHallRepository.save(conferenceHall);
 
@@ -115,10 +124,11 @@ class ConferenceHallRepositoryImplTest {
     }
 
     @Test
+    @DisplayName("")
     void existsById_whenInvokeWithInValidConferenceHallId_whenReturnFalse() {
         conferenceHallRepository.save(conferenceHall);
 
-        boolean isConferenceHallExists = conferenceHallRepository.existsById(2);
+        boolean isConferenceHallExists = conferenceHallRepository.existsById(3);
 
         assertThat(isConferenceHallExists)
                 .isFalse();

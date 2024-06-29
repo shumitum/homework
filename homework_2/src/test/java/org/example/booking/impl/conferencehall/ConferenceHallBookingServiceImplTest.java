@@ -11,6 +11,7 @@ import org.example.user.model.User;
 import org.example.user.service.AuthenticationService;
 import org.example.user.service.impl.AuthenticationServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -19,6 +20,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.io.ByteArrayInputStream;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
@@ -54,44 +56,56 @@ class ConferenceHallBookingServiceImplTest {
                 .build();
     }
 
-    //@Test
-    //void cancelBooking_whenInvoke_thenInvokeMethodsGetAuthorizedUserAndDeleteBooking() {
-    //    when(authenticationService.getAuthorizedUser()).thenReturn(new User("name", "123"));
-    //    doNothing().when(conferenceHallBookingRepository).deleteBooking(1, "name");
-//
-    //    System.setIn(new ByteArrayInputStream("1".getBytes()));
-    //    conferenceHallBookingService.cancelBooking();
-//
-    //    verify(authenticationService, times(1)).getAuthorizedUser();
-    //    verify(conferenceHallBookingRepository, times(1)).deleteBooking(1, "name");
-    //}
-
     @Test
-    void getAvailableSlotsByDate_whenInvoke_thenInvokeMethodsFindBookingByDateAndFindAll() {
-        LocalDate date = LocalDate.of(2024, 7, 25);
-        when(conferenceHallBookingRepository.findBookingByDate(date)).thenReturn(List.of(booking));
-        when(conferenceHallRepository.findAll()).thenReturn(List.of(new ConferenceHall()));
+    @DisplayName("Отменить бронирование")
+    void cancelBooking_whenInvoke_thenInvokeMethodsGetAuthorizedUserAndDeleteBooking() {
+        when(authenticationService.getAuthorizedUser()).thenReturn(new User(1, "name", "123"));
+        doNothing().when(conferenceHallBookingRepository).deleteBooking(1, "name");
 
+        System.setIn(new ByteArrayInputStream("1".getBytes()));
+        conferenceHallBookingService.cancelBooking();
 
-        System.setIn(new ByteArrayInputStream("2024-07-25".getBytes()));
-        //conferenceHallBookingService.getAvailableSlotsByDate();
-
-        verify(conferenceHallBookingRepository, times(1)).findBookingByDate(date);
-        verify(conferenceHallRepository, times(1)).findAll();
+        verify(authenticationService, times(1)).getAuthorizedUser();
+        verify(conferenceHallBookingRepository, times(1)).deleteBooking(1, "name");
     }
 
     @Test
+    @DisplayName("Найти свободные слоты на дату")
+    void getAvailableSlotsByDate_whenInvoke_thenInvokeMethodsFindBookingByDateAndFindAll() {
+        LocalDate date = LocalDate.of(2024, 7, 25);
+        when(conferenceHallBookingRepository.findBookingByDate(date)).thenReturn(List.of(booking));
+        when(conferenceHallRepository.findAll()).thenReturn(List.of(new ConferenceHall(1, "name")));
+
+
+        System.setIn(new ByteArrayInputStream("2024-07-25".getBytes()));
+        Map<Integer, List<Slot>> availableSlotsByDate = conferenceHallBookingService.getAvailableSlotsByDate(date);
+
+        verify(conferenceHallBookingRepository, times(1)).findBookingByDate(date);
+        verify(conferenceHallRepository, times(1)).findAll();
+        assertThat(availableSlotsByDate)
+                .isNotEmpty()
+                .hasSize(1)
+                .containsEntry(1, List.of(Slot.MORNING_SLOT));
+    }
+
+    @Test
+    @DisplayName("найти все бронирования на определенную дату")
     void getBookingsByDate_whenInvokeWithValidDate_thenInvokeFindBookingByDateMethodFromRepository() {
         LocalDate date = LocalDate.of(2024, 7, 25);
         when(conferenceHallBookingRepository.findBookingByDate(date)).thenReturn(List.of(new Booking()));
 
         System.setIn(new ByteArrayInputStream("2024-07-25".getBytes()));
-        conferenceHallBookingService.getBookingsByDate();
+        List<Booking> bookingsByDate = conferenceHallBookingService.getBookingsByDate();
 
         verify(conferenceHallBookingRepository, times(1)).findBookingByDate(date);
+        assertThat(bookingsByDate)
+                .isNotEmpty()
+                .hasSize(1)
+                .contains(new Booking());
     }
 
     @Test
+    @DisplayName("")
     void getBookingsByUserName_whenInvoke_thenInvokeFindBookingByUserNameFromRepository() {
         String name = "name";
         when(conferenceHallBookingRepository.findBookingByUserName(name)).thenReturn(List.of(new Booking()));
@@ -103,6 +117,7 @@ class ConferenceHallBookingServiceImplTest {
     }
 
     @Test
+    @DisplayName("")
     void getAllBookings_whenInvoke_thenReturnListOfBookings() {
         when(conferenceHallBookingRepository.findAllBookings()).thenReturn(List.of(new Booking()));
 

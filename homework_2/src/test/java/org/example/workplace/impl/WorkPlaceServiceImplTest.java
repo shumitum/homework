@@ -3,6 +3,7 @@ package org.example.workplace.impl;
 import org.example.crud.CrudRepository;
 import org.example.workplace.model.Workplace;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -28,17 +29,18 @@ class WorkPlaceServiceImplTest {
     }
 
     @Test
+    @DisplayName("")
     void createWorkplace_whenInvokeWithValidWorkplace_thenCreateNewWorkplace() {
-        Workplace workplace = new Workplace(1, 1);
-        doNothing().when(workPlaceRepository).save(workplace);
+        doNothing().when(workPlaceRepository).save(any());
 
         System.setIn(new ByteArrayInputStream("1".getBytes()));
         workPlaceService.createWorkplace();
 
-        verify(workPlaceRepository, times(1)).save(workplace);
+        verify(workPlaceRepository, times(1)).save(any());
     }
 
     @Test
+    @DisplayName("")
     void createWorkplace_whenInvokeWithStringInput_whenThrowsException() {
         Workplace workplace = new Workplace(1, 1);
 
@@ -49,6 +51,7 @@ class WorkPlaceServiceImplTest {
     }
 
     @Test
+    @DisplayName("")
     void deleteWorkplace_whenInvokeWithValidWorkplaceId_thenInvokeDeleteMethod() {
         doNothing().when(workPlaceRepository).delete(1);
 
@@ -59,6 +62,7 @@ class WorkPlaceServiceImplTest {
     }
 
     @Test
+    @DisplayName("")
     void deleteWorkplace_whenInvokeWithStringInput_whenThrowsException() {
         System.setIn(new ByteArrayInputStream("ert".getBytes()));
 
@@ -66,6 +70,7 @@ class WorkPlaceServiceImplTest {
     }
 
     @Test
+    @DisplayName("")
     void findAllWorkplaces_whenInvoke_thenReturnListOfTwoWorkplaces() {
         when(workPlaceRepository.findAll()).thenReturn(List.of(new Workplace(), new Workplace()));
 

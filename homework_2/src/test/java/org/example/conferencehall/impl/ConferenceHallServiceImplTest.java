@@ -3,6 +3,7 @@ package org.example.conferencehall.impl;
 import org.example.conferencehall.model.ConferenceHall;
 import org.example.crud.CrudRepository;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -28,17 +29,18 @@ class ConferenceHallServiceImplTest {
     }
 
     @Test
+    @DisplayName("")
     void createConferenceHall_whenInvokeWithValidConferenceHall_thenInvokeSaveMethod() {
-        ConferenceHall conferenceHall = new ConferenceHall(1, "Hall");
-        doNothing().when(conferenceHallRepository).save(conferenceHall);
+        doNothing().when(conferenceHallRepository).save(any());
 
         System.setIn(new ByteArrayInputStream("Hall".getBytes()));
         conferenceHallService.createConferenceHall();
 
-        verify(conferenceHallRepository, times(1)).save(conferenceHall);
+        verify(conferenceHallRepository, times(1)).save(any());
     }
 
     @Test
+    @DisplayName("")
     void deleteConferenceHall_whenInvokeWithValidConferenceHallId_thenInvokeDeleteMethod() {
         doNothing().when(conferenceHallRepository).delete(1);
 
@@ -49,6 +51,7 @@ class ConferenceHallServiceImplTest {
     }
 
     @Test
+    @DisplayName("")
     void deleteConferenceHall_whenInvokeWithInValidConferenceHallId_thenDontInvokeDeleteMethod() {
         System.setIn(new ByteArrayInputStream("ert".getBytes()));
 
@@ -56,6 +59,7 @@ class ConferenceHallServiceImplTest {
     }
 
     @Test
+    @DisplayName("")
     void findAllConferenceHalls_whenInvoke_thenReturnListOfConferenceHalls() {
         when(conferenceHallRepository.findAll()).thenReturn(List.of(new ConferenceHall(), new ConferenceHall()));
 

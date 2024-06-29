@@ -5,6 +5,7 @@ import org.example.booking.model.PlaceType;
 import org.example.booking.model.Slot;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -38,10 +39,11 @@ class WorkplaceBookingRepositoryImplTest {
     }
 
     /*@Test
+    @DisplayName("")
     void save_whenInvokeWithValidBooking_thenSaveBooking() {
         workplaceBookingRepository.save(booking);
 
-        Map<Integer, Booking> workplaceBookings = workplaceBookingRepository.getWorkPlaceBookings();
+        Map<Integer, Booking> workplaceBookings = workplaceBookingRepository.findWorkPlaceBookings();
 
         assertThat(workplaceBookings)
                 .containsEntry(1, booking)
@@ -49,6 +51,7 @@ class WorkplaceBookingRepositoryImplTest {
     }
 
     @Test
+    @DisplayName("")
     void save_whenInvokeWithNull_thenSaveNothing() {
         workplaceBookingRepository.save(null);
 
@@ -59,6 +62,7 @@ class WorkplaceBookingRepositoryImplTest {
     }
 
     @Test
+    @DisplayName("")
     void deleteBooking_whenInvokeWithValidBookingIdAndUserName_thenDeleteBooking() {
         workplaceBookingRepository.save(booking);
         Map<Integer, Booking> workplaceBookings = workplaceBookingRepository.getWorkPlaceBookings();
@@ -73,6 +77,7 @@ class WorkplaceBookingRepositoryImplTest {
     }
 
     @Test
+    @DisplayName("")
     void deleteBooking_whenInvokeWithInValidUserName_thenDeleteNothing() {
         workplaceBookingRepository.save(booking);
         Map<Integer, Booking> workplaceBookings = workplaceBookingRepository.getWorkPlaceBookings();
@@ -87,6 +92,7 @@ class WorkplaceBookingRepositoryImplTest {
     }
 
     @Test
+    @DisplayName("")
     void findBookingByUserName_whenInvokeWithValidUserName_thenReturnListOfOnlyBooking() {
         Booking newBooking = Booking.builder()
                 .bookingId(2)
@@ -113,6 +119,7 @@ class WorkplaceBookingRepositoryImplTest {
     }
 
     @Test
+    @DisplayName("")
     void findBookingByUserName_whenInvokeWithInValidUserName_thenReturnEmptyList() {
         workplaceBookingRepository.save(booking);
 
@@ -123,6 +130,7 @@ class WorkplaceBookingRepositoryImplTest {
     }
 
     @Test
+    @DisplayName("")
     void findBookingByDate_whenInvokeWithValidDate_thenReturnCorrectBooking() {
         Booking newBooking = Booking.builder()
                 .bookingId(2)
@@ -148,6 +156,7 @@ class WorkplaceBookingRepositoryImplTest {
     }
 
     @Test
+    @DisplayName("")
     void findBookingByDate_whenInvokeWithInCorrectDate_thenReturnEmptyList() {
         Booking newBooking = Booking.builder()
                 .bookingId(2)
@@ -172,6 +181,7 @@ class WorkplaceBookingRepositoryImplTest {
     }
 
     @Test
+    @DisplayName("")
     void findAllBookings_thenInvoke_thenReturnListOfTwoBookings() {
         Booking newBooking = Booking.builder()
                 .bookingId(2)
@@ -198,6 +208,7 @@ class WorkplaceBookingRepositoryImplTest {
     }
 
     @Test
+    @DisplayName("")
     void findAllBookings_whenInvoke_thenReturnEmptyList() {
         Map<Integer, Booking> workplaceBookings = workplaceBookingRepository.getWorkPlaceBookings();
         assertThat(workplaceBookings)
