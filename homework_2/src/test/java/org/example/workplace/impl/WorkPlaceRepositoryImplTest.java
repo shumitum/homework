@@ -1,31 +1,43 @@
 package org.example.workplace.impl;
 
+import org.example.testcontainer.TestContainer;
 import org.example.workplace.model.Workplace;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.testcontainers.containers.PostgreSQLContainer;
+import org.testcontainers.junit.jupiter.Container;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 class WorkPlaceRepositoryImplTest {
 
     private WorkPlaceRepositoryImpl workPlaceRepository;
-
     private Workplace workplace;
+    @Container
+    private PostgreSQLContainer<?> postgreSQLContainer;
 
     @BeforeEach
     void setUp() {
         workPlaceRepository = new WorkPlaceRepositoryImpl();
         workplace = new Workplace(1, 2);
+        postgreSQLContainer = TestContainer.getPostgresContainer();
     }
 
     @AfterEach
     void tearDown() {
         workPlaceRepository = null;
+    }
+
+    @Test
+    void findAll_whenInvoke_thenReturnEmptyList() {
+        List<Workplace> all = workPlaceRepository.findAll();
+
+        assertThat(all)
+                .isNotEmpty()
+                .hasSize(1);
     }
 
     /*@Test

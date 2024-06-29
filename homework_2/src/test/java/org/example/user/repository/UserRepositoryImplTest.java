@@ -1,22 +1,31 @@
 package org.example.user.repository;
 
-import org.junit.jupiter.api.BeforeEach;
+import org.example.testcontainer.TestContainer;
+import org.example.user.model.User;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.testcontainers.containers.PostgreSQLContainer;
+import org.testcontainers.junit.jupiter.Container;
 
-import java.util.Map;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+
 class UserRepositoryImplTest {
 
-    private UserRepositoryImpl userRepository;
+    private static UserRepositoryImpl userRepository;
 
-    @BeforeEach
-    void setUp() {
+    @Container
+    private static PostgreSQLContainer<?> postgreSQLContainer;
+
+    @BeforeAll
+    static void setUpAll() {
+        postgreSQLContainer = TestContainer.getPostgresContainer();
         userRepository = new UserRepositoryImpl();
     }
 
-    /*@Test
+/*    @Test
     void saveUser_whenInvoke_thenSaveUserCredentials() {
         Map<String, String> registeredUsers = userRepository.getRegisteredUser();
         assertThat(registeredUsers)
@@ -27,9 +36,9 @@ class UserRepositoryImplTest {
         assertThat(registeredUsers)
                 .isNotEmpty()
                 .containsEntry("name", "password");
-    }
+    }*/
 
-    @Test
+    /*@Test
     void saveUser_whenInvokeWithAlreadyExistUser_thenNotSaveUserCredentials() {
         userRepository.saveUser("name", "password");
         Map<String, String> registeredUsers = userRepository.getRegisteredUser();
@@ -46,31 +55,20 @@ class UserRepositoryImplTest {
                 .containsEntry("name", "password");
     }*/
 
-    //@Test
-    //void checkUserCredentials_whenInvokeWithExistsCredentials_thenReturnTrue() {
-    //    userRepository.saveUser("name", "password");
-    //    Map<String, String> registeredUsers = userRepository.getRegisteredUser();
-    //    assertThat(registeredUsers)
-    //            .isNotEmpty()
-    //            .hasSize(1)
-    //            .containsEntry("name", "password");
-//
-    //    boolean isUserExists = userRepository.checkUserCredentials("name", "password");
-    //    assertThat(isUserExists)
-    //            .isTrue();
-    //}
-//
-    //@Test
-    //void checkUserCredentials_whenInvokeWithNonExistsCredentials_thenReturnFalse() {
-    //    userRepository.saveUser("name", "password");
-    //    Map<String, String> registeredUsers = userRepository.getRegisteredUser();
-    //    assertThat(registeredUsers)
-    //            .isNotEmpty()
-    //            .hasSize(1)
-    //            .containsEntry("name", "password");
-//
-    //    boolean isUserExists = userRepository.checkUserCredentials("qwe", "asd");
-    //    assertThat(isUserExists)
-    //            .isFalse();
-    //}
+    @Test
+    void checkUserCredentials_whenInvokeWithExistsCredentials_thenReturnUser() {
+        Optional<User> userByCredentials = userRepository.findUserByCredentials("qwe", "qwe");
+
+        assertThat(userByCredentials)
+                .isPresent()
+                .contains(new User(1, "qwe", "qwe"));
+    }
+
+    @Test
+    void checkUserCredentials_whenInvokeWithNonExistsCredentials_thenReturnFalse() {
+        Optional<User> userByCredentials = userRepository.findUserByCredentials("xcv", "xcv");
+
+        assertThat(userByCredentials)
+                .isEmpty();
+    }
 }

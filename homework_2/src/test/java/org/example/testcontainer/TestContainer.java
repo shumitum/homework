@@ -1,3 +1,5 @@
+package org.example.testcontainer;
+
 import liquibase.Liquibase;
 import liquibase.database.Database;
 import liquibase.database.DatabaseFactory;
@@ -17,6 +19,7 @@ import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
+
 public class TestContainer {
 
     private static final String USER = "name";
@@ -34,7 +37,7 @@ public class TestContainer {
                     .withDatabaseName("db_name")
                     .withUsername(USER)
                     .withPassword(PASSWORD);
-            postgres.setPortBindings(List.of("6540:5432"));
+            postgres.setPortBindings(List.of("6545:5432"));
             postgres.start();
             createTables();
         }
