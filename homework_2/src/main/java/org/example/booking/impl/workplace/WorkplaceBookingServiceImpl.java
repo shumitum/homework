@@ -129,17 +129,21 @@ public class WorkplaceBookingServiceImpl implements BookingService {
                 return workplaceId;
             }
         } catch (InputMismatchException exc) {
-            System.out.println("ID рабочего места должен быть цифрой");
+            throw new InputMismatchException("ID рабочего места должен быть цифрой");
         }
         throw new NoSuchElementException("рабочего места c введенным ID не существует");
     }
 
     private Slot getSlot() throws InputMismatchException {
-        int slot = UserInput.digitInput("Выберите слот: цифра 1 - с 8 до 12 ч., цифра 2 с 13 до 17 ч.");
-        if (slot == 1) {
-            return Slot.MORNING_SLOT;
-        } else if (slot == 2) {
-            return Slot.AFTERNOON_SLOT;
+        try {
+            int slot = UserInput.digitInput("Выберите слот: цифра 1 - с 8 до 12 ч., цифра 2 с 13 до 17 ч.");
+            if (slot == 1) {
+                return Slot.MORNING_SLOT;
+            } else if (slot == 2) {
+                return Slot.AFTERNOON_SLOT;
+            }
+        } catch (InputMismatchException exc) {
+            throw new InputMismatchException("ID слота должен быть цифрой");
         }
         throw new InputMismatchException("Неверный код слота, цифра 1 - с 8 до 12 ч., цифра 2 с 13 до 17 ч.");
     }

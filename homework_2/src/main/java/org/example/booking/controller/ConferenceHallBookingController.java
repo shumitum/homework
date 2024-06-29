@@ -56,10 +56,12 @@ public class ConferenceHallBookingController {
     }
 
     public void getAllBookings() {
-        try {
-            Output.printMessage("Список всех бронирований конференц-залов: " + conferenceHallBookingService.getAllBookings());
-        } catch (RuntimeException exc) {
-            Output.printMessage(exc.getMessage());
+        List<Booking> bookings = conferenceHallBookingService.getAllBookings();
+        Output.printMessage("Список всех бронирований конференц-залов: ");
+        if (bookings.isEmpty()) {
+            Output.printMessage("Бронирования отсутствуют.");
+        } else {
+            bookings.forEach(booking -> Output.printMessage(booking.toString()));
         }
     }
 }

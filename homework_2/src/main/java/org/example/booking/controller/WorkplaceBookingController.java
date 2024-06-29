@@ -56,10 +56,12 @@ public class WorkplaceBookingController {
     }
 
     public void getAllBookings() {
-        try {
-            Output.printMessage("Список всех бронирований рабочих мест: " + workplaceBookingService.getAllBookings());
-        } catch (RuntimeException exc) {
-            Output.printMessage(exc.getMessage());
+        List<Booking> bookings = workplaceBookingService.getAllBookings();
+        Output.printMessage("Список всех бронирований рабочих мест: ");
+        if (bookings.isEmpty()) {
+            Output.printMessage("Бронирования отсутствуют.");
+        } else {
+            bookings.forEach(booking -> Output.printMessage(booking.toString()));
         }
     }
 }
