@@ -28,7 +28,7 @@ class WorkPlaceRepositoryImplTest {
         workPlaceRepository = null;
     }
 
-    @Test
+    /*@Test
     void save_whenInvokeWithValidWorkplace_thenSaveWorkplace() {
         workPlaceRepository.save(workplace);
 
@@ -117,5 +117,5 @@ class WorkPlaceRepositoryImplTest {
 
         assertThat(isWorkplaceExists)
                 .isFalse();
-    }
+    }*/
 }

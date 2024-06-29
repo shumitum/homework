@@ -15,6 +15,9 @@
         <org.junit.jupiter.version>5.10.2</org.junit.jupiter.version>
         <org.mockito.version>5.12.0</org.mockito.version>
         <org.assertj.version>3.25.3</org.assertj.version>
+        <org.testcontainers.version>1.19.8</org.testcontainers.version>
+        <org.liquibase.version>4.17.2</org.liquibase.version>
+        <org.postgresql.version>42.7.3</org.postgresql.version>
         <java.version>17</java.version>
     </properties>
 
@@ -50,13 +53,27 @@
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <version>42.7.3</version>
+            <version>${org.postgresql.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.liquibase</groupId>
             <artifactId>liquibase-core</artifactId>
-            <version>4.17.2</version>
+            <version>${org.liquibase.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>${org.testcontainers.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>${org.testcontainers.version}</version>
+            <scope>test</scope>
         </dependency>
 
     </dependencies>

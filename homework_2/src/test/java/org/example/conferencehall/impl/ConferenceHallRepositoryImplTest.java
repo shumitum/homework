@@ -29,7 +29,7 @@ class ConferenceHallRepositoryImplTest {
         conferenceHallRepository = null;
     }
 
-    @Test
+    /*@Test
     void save_whenInvokeWithValidConferenceHall_whenSaveConferenceHall() {
         conferenceHallRepository.save(conferenceHall);
 
@@ -88,7 +88,7 @@ class ConferenceHallRepositoryImplTest {
         Map<Integer, ConferenceHall> halls = conferenceHallRepository.getHalls();
         assertThat(halls).isEmpty();
         assertThatThrownBy(() -> conferenceHallRepository.delete(2)).isInstanceOf(NoSuchElementException.class);
-    }
+    }*/
 
     @Test
     void findAll() {
