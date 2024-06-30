@@ -3,8 +3,8 @@ package org.example.menu;
 import lombok.Setter;
 import org.example.conferencehall.ConferenceHallService;
 import org.example.context.ApplicationContext;
-
-import java.util.Scanner;
+import org.example.in.UserInput;
+import org.example.out.Output;
 
 @Setter
 public class ConferenceHallMenu implements Menu {
@@ -18,17 +18,17 @@ public class ConferenceHallMenu implements Menu {
     public void handleUserAction() {
         while (true) {
             printCommonMenu();
-            Scanner scanner = new Scanner(System.in);
-            String command = scanner.next();
+            String command = UserInput.stringInput();
             switch (command.trim()) {
                 case "1" -> conferenceHallService.createConferenceHall();
                 case "2" -> conferenceHallService.updateConferenceHall();
                 case "3" -> conferenceHallService.deleteConferenceHall();
-                case "4" -> System.out.println(conferenceHallService.findAllConferenceHalls());
+                case "4" -> Output.printMessage(conferenceHallService.findAllConferenceHalls().toString());
                 case "0" -> {
                     return;
                 }
-                default -> System.out.println((char) 27 + "[31mИзвините, такой команды не существует." + (char) 27 + "[0m");
+                default ->
+                        Output.printMessage((char) 27 + "[31mИзвините, такой команды не существует." + (char) 27 + "[0m");
             }
         }
     }

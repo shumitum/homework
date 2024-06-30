@@ -26,40 +26,8 @@ class UserRepositoryImplTest {
         userRepository = new UserRepositoryImpl();
     }
 
-/*    @Test
-    @DisplayName("")
-    void saveUser_whenInvoke_thenSaveUserCredentials() {
-        Map<String, String> registeredUsers = userRepository.getRegisteredUser();
-        assertThat(registeredUsers)
-                .isEmpty();
-
-        userRepository.saveUser("name", "password");
-
-        assertThat(registeredUsers)
-                .isNotEmpty()
-                .containsEntry("name", "password");
-    }*/
-
-    /*@Test
-    @DisplayName("")
-    void saveUser_whenInvokeWithAlreadyExistUser_thenNotSaveUserCredentials() {
-        userRepository.saveUser("name", "password");
-        Map<String, String> registeredUsers = userRepository.getRegisteredUser();
-        assertThat(registeredUsers)
-                .isNotEmpty()
-                .hasSize(1)
-                .containsEntry("name", "password");
-
-        userRepository.saveUser("name", "password");
-
-        assertThat(registeredUsers)
-                .isNotEmpty()
-                .hasSize(1)
-                .containsEntry("name", "password");
-    }*/
-
     @Test
-    @DisplayName("")
+    @DisplayName("Проверка существования юзера по логину/паролю")
     void checkUserCredentials_whenInvokeWithExistsCredentials_thenReturnUser() {
         Optional<User> userByCredentials = userRepository.findUserByCredentials("qwe", "qwe");
 
@@ -69,7 +37,7 @@ class UserRepositoryImplTest {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("Проверка существования юзера по несуществующим логину/паролю")
     void checkUserCredentials_whenInvokeWithNonExistsCredentials_thenReturnFalse() {
         Optional<User> userByCredentials = userRepository.findUserByCredentials("xcv", "xcv");
 

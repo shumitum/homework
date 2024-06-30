@@ -23,6 +23,11 @@ public class UserInput {
         return scanner.next();
     }
 
+    public static String stringInput() {
+        Scanner scanner = new Scanner(System.in);
+        return scanner.next();
+    }
+
     public static LocalDate dateInput() throws DateTimeParseException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите дату бронирования в формате гггг-мм-дд:");

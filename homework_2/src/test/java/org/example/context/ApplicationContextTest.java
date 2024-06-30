@@ -2,6 +2,8 @@ package org.example.context;
 
 import org.example.booking.BookingRepository;
 import org.example.booking.BookingService;
+import org.example.booking.controller.ConferenceHallBookingController;
+import org.example.booking.controller.WorkplaceBookingController;
 import org.example.booking.impl.conferencehall.ConferenceHallBookingRepositoryImpl;
 import org.example.booking.impl.conferencehall.ConferenceHallBookingServiceImpl;
 import org.example.booking.impl.workplace.WorkplaceBookingRepositoryImpl;
@@ -43,6 +45,24 @@ class ApplicationContextTest {
 
     @AfterEach
     void tearDown() {
+    }
+
+    @Test
+    void getConferenceHallBookingController() {
+        ConferenceHallBookingController conferenceHallBookingController = context.getConferenceHallBookingController();
+
+        assertThat(conferenceHallBookingController)
+                .isNotNull()
+                .isInstanceOf(ConferenceHallBookingController.class);
+    }
+
+    @Test
+    void getWorkplaceBookingController() {
+        WorkplaceBookingController workplaceBookingController = context.getWorkplaceBookingController();
+
+        assertThat(workplaceBookingController)
+                .isNotNull()
+                .isInstanceOf(WorkplaceBookingController.class);
     }
 
     @Test

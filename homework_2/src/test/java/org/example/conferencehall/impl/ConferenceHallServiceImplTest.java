@@ -29,7 +29,7 @@ class ConferenceHallServiceImplTest {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("Создание конференц-зала")
     void createConferenceHall_whenInvokeWithValidConferenceHall_thenInvokeSaveMethod() {
         doNothing().when(conferenceHallRepository).save(any());
 
@@ -40,7 +40,7 @@ class ConferenceHallServiceImplTest {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("Удаление конференц-зала по ИД")
     void deleteConferenceHall_whenInvokeWithValidConferenceHallId_thenInvokeDeleteMethod() {
         doNothing().when(conferenceHallRepository).delete(1);
 
@@ -51,7 +51,7 @@ class ConferenceHallServiceImplTest {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("Удаление конференц-зала по несуществующему ИД")
     void deleteConferenceHall_whenInvokeWithInValidConferenceHallId_thenDontInvokeDeleteMethod() {
         System.setIn(new ByteArrayInputStream("ert".getBytes()));
 
@@ -59,7 +59,7 @@ class ConferenceHallServiceImplTest {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("Поиск всех конференц-залов")
     void findAllConferenceHalls_whenInvoke_thenReturnListOfConferenceHalls() {
         when(conferenceHallRepository.findAll()).thenReturn(List.of(new ConferenceHall(), new ConferenceHall()));
 

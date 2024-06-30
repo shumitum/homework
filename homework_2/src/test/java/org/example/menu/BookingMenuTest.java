@@ -1,10 +1,7 @@
 package org.example.menu;
 
-import org.example.booking.BookingService;
 import org.example.booking.controller.ConferenceHallBookingController;
 import org.example.booking.controller.WorkplaceBookingController;
-import org.example.booking.impl.conferencehall.ConferenceHallBookingServiceImpl;
-import org.example.booking.impl.workplace.WorkplaceBookingServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -36,7 +33,7 @@ class BookingMenuTest {
     }
 
     @Test
-    @DisplayName("Some text")
+    @DisplayName("Вызов метода создания бронирования конф-зала при выборе первого пункта меню")
     void handleUserAction_whenInvokeFirstMenuOption_thenThrowsException() {
         doThrow(NoSuchElementException.class).when(conferenceHallBookingController).createBooking();
 
@@ -47,7 +44,7 @@ class BookingMenuTest {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("Вызов метода создания бронирования рабочего места при выборе второго пункта меню")
     void handleUserAction_whenInvokeSecondMenuOption_thenThrowsException() {
         doThrow(NoSuchElementException.class).when(workplaceBookingController).createBooking();
 
@@ -58,7 +55,7 @@ class BookingMenuTest {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("Вызов метода отмены бронирования конф-зала при выборе третьего пункта меню")
     void handleUserAction_whenInvokeThirdMenuOption_thenThrowsException() {
         doThrow(NoSuchElementException.class).when(conferenceHallBookingController).cancelBooking();
 
@@ -69,7 +66,7 @@ class BookingMenuTest {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("Вызов метода отмены бронирования рабочего места при выборе четвертого пункта меню")
     void handleUserAction_whenInvokeFourthMenuOption_thenThrowsException() {
         doThrow(NoSuchElementException.class).when(workplaceBookingController).cancelBooking();
 
@@ -80,7 +77,7 @@ class BookingMenuTest {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("Вызов метода поиска свободных слотов бронирования конф-зала при выборе пятого пункта меню")
     void handleUserAction_whenInvokeFifthMenuOption_thenThrowsException() {
         doThrow(NoSuchElementException.class).when(conferenceHallBookingController).getAvailableSlotsByDate();
 
@@ -91,7 +88,7 @@ class BookingMenuTest {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("Вызов метода поиска свободных слотов бронирования рабочего места  при выборе шестого пункта меню")
     void handleUserAction_whenInvokeSixthMenuOption_thenThrowsException() {
         doThrow(NoSuchElementException.class).when(workplaceBookingController).getAvailableSlotsByDate();
 
@@ -102,7 +99,7 @@ class BookingMenuTest {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("Вызов метода поиска бронирований конф-залов на дату при выборе седьмого пункта меню")
     void handleUserAction_whenInvokeSeventhMenuOption_thenThrowsException() {
         doThrow(NoSuchElementException.class).when(conferenceHallBookingController).getBookingsByDate();
 
@@ -113,7 +110,7 @@ class BookingMenuTest {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("Вызов метода поиска бронирований рабочих мест на дату при выборе восьмого пункта меню")
     void handleUserAction_whenInvokeEighthMenuOption_thenThrowsException() {
         doThrow(NoSuchElementException.class).when(workplaceBookingController).getBookingsByDate();
 
@@ -124,7 +121,7 @@ class BookingMenuTest {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("Вызов метода поиска бронирований конф-залов по имени при выборе девятого пункта меню")
     void handleUserAction_whenInvokeNinthMenuOption_thenThrowsException() {
         doThrow(NoSuchElementException.class).when(conferenceHallBookingController).getBookingsByUserName();
 
@@ -135,7 +132,7 @@ class BookingMenuTest {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("Вызов метода поиска бронирований рабочих мест по имени при выборе десятого пункта меню")
     void handleUserAction_whenInvokeTenthMenuOption_thenThrowsException() {
         doThrow(NoSuchElementException.class).when(workplaceBookingController).getBookingsByUserName();
 
@@ -146,7 +143,7 @@ class BookingMenuTest {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("Вызов метода поиска всех бронирований конф-залов при выборе одиннадцатого пункта меню")
     void handleUserAction_whenInvokeEleventhMenuOption_thenThrowsException() {
         doThrow(NoSuchElementException.class).when(conferenceHallBookingController).getAllBookings();
 
@@ -157,7 +154,7 @@ class BookingMenuTest {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("Вызов метода поиска всех бронирований рабочих мест при выборе двенадцатого пункта меню")
     void handleUserAction_whenInvokeTwelfthMenuOption_thenThrowsException() {
         doThrow(NoSuchElementException.class).when(workplaceBookingController).getAllBookings();
 

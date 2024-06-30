@@ -2,10 +2,9 @@ package org.example.menu;
 
 import lombok.Setter;
 import org.example.context.ApplicationContext;
+import org.example.in.UserInput;
 import org.example.user.service.AuthenticationService;
 import org.example.user.service.RegistrationService;
-
-import java.util.Scanner;
 
 @Setter
 public class PrimaryMenu implements Menu {
@@ -30,8 +29,7 @@ public class PrimaryMenu implements Menu {
     public void handleUserAction() {
         while (true) {
             printAuthMenu();
-            Scanner scanner = new Scanner(System.in);
-            String command = scanner.next();
+            String command = UserInput.stringInput();
             switch (command.trim()) {
                 case "1" -> registrationService.registerUser();
                 case "2" -> authenticationService.authenticateUser();

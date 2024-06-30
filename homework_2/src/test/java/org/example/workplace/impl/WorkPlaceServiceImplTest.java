@@ -29,7 +29,7 @@ class WorkPlaceServiceImplTest {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("Создание рабочего места")
     void createWorkplace_whenInvokeWithValidWorkplace_thenCreateNewWorkplace() {
         doNothing().when(workPlaceRepository).save(any());
 
@@ -40,7 +40,7 @@ class WorkPlaceServiceImplTest {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("Создание рабочего места с вводом текстом вместо номера этажа")
     void createWorkplace_whenInvokeWithStringInput_whenThrowsException() {
         Workplace workplace = new Workplace(1, 1);
 
@@ -51,7 +51,7 @@ class WorkPlaceServiceImplTest {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("Удаление рабочего места")
     void deleteWorkplace_whenInvokeWithValidWorkplaceId_thenInvokeDeleteMethod() {
         doNothing().when(workPlaceRepository).delete(1);
 
@@ -62,7 +62,7 @@ class WorkPlaceServiceImplTest {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("Удаление рабочего места с вводом текста вместо номера этажа")
     void deleteWorkplace_whenInvokeWithStringInput_whenThrowsException() {
         System.setIn(new ByteArrayInputStream("ert".getBytes()));
 
@@ -70,7 +70,7 @@ class WorkPlaceServiceImplTest {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("Поиск всех рабочих мест")
     void findAllWorkplaces_whenInvoke_thenReturnListOfTwoWorkplaces() {
         when(workPlaceRepository.findAll()).thenReturn(List.of(new Workplace(), new Workplace()));
 

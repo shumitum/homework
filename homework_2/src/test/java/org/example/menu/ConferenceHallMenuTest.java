@@ -29,7 +29,7 @@ class ConferenceHallMenuTest {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("Вызов метода создания конф-зала при выборе первого пункта меню")
     void handleUserAction_whenInvokeFirstMenuOption_thenThrowsException() {
         doThrow(NoSuchElementException.class).when(conferenceHallService).createConferenceHall();
 
@@ -40,7 +40,7 @@ class ConferenceHallMenuTest {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("Вызов метода обновления данных конф-зала при выборе второго пункта меню")
     void handleUserAction_whenInvokeSecondMenuOption_thenThrowsException() {
         doThrow(NoSuchElementException.class).when(conferenceHallService).updateConferenceHall();
 
@@ -51,7 +51,7 @@ class ConferenceHallMenuTest {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("Вызов метода удаления конф-зала при выборе третьего пункта меню")
     void handleUserAction_whenInvokeThirdMenuOption_thenThrowsException() {
         doThrow(NoSuchElementException.class).when(conferenceHallService).deleteConferenceHall();
 
@@ -62,7 +62,7 @@ class ConferenceHallMenuTest {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("Вызов метода поиска  всех конф-залов при выборе четвертого пункта меню")
     void handleUserAction_whenInvokeFourthMenuOption_thenThrowsException() {
         doThrow(NoSuchElementException.class).when(conferenceHallService).findAllConferenceHalls();
 

@@ -2,10 +2,7 @@ package org.example.workplace.impl;
 
 import org.example.testcontainer.TestContainer;
 import org.example.workplace.model.Workplace;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 
@@ -13,28 +10,28 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class WorkPlaceRepositoryImplTest {
 
-    private WorkPlaceRepositoryImpl workPlaceRepository;
+    private WorkPlaceRepositoryImpl workPlaceRepository = new WorkPlaceRepositoryImpl();
     private Workplace workplace;
     @Container
-    private PostgreSQLContainer<?> postgreSQLContainer;
+    private static PostgreSQLContainer<?> postgreSQLContainer;
 
-    @BeforeEach
-    void setUp() {
-        workPlaceRepository = new WorkPlaceRepositoryImpl();
-        workplace = new Workplace(1, 2);
+    @BeforeAll
+    static void setUpAll() {
         postgreSQLContainer = TestContainer.getPostgresContainer();
     }
 
-    @AfterEach
-    void tearDown() {
-        workPlaceRepository = null;
+    @BeforeEach
+    void setUp() {
+        workplace = new Workplace(1, 1);
     }
 
     @Test
+    @Order(1)
     @DisplayName("Найти все рабочие места")
-    void findAll_whenInvoke_thenReturnEmptyList() {
+    void findAll_whenInvoke_thenReturnList() {
         List<Workplace> all = workPlaceRepository.findAll();
 
         assertThat(all)
@@ -42,89 +39,10 @@ class WorkPlaceRepositoryImplTest {
                 .hasSize(1);
     }
 
-    /*@Test
-    @DisplayName("")
-    void save_whenInvokeWithValidWorkplace_thenSaveWorkplace() {
-        workPlaceRepository.save(workplace);
-
-        List<Workplace> all = workPlaceRepository.getWorkplaces().values().stream().toList();
-
-        assertThat(all)
-                .contains(workplace);
-    }
-
     @Test
-    @DisplayName("")
-    void save_whenInvokeWithNull_thenDontSaveWorkplace() {
-        workPlaceRepository.save(null);
-
-        List<Workplace> all = workPlaceRepository.getWorkplaces().values().stream().toList();
-
-        assertThat(all)
-                .isEmpty();
-    }
-
-    @Test
-    @DisplayName("")
-    void update_whenInvokeWithValidWorkPlaceId_thenUpdateWorkplace() {
-        workPlaceRepository.save(workplace);
-        Workplace updatedWorkplace = new Workplace(1, 4);
-
-        workPlaceRepository.update(updatedWorkplace);
-
-        List<Workplace> all = workPlaceRepository.getWorkplaces().values().stream().toList();
-
-        assertThat(all)
-                .contains(updatedWorkplace);
-    }
-
-    @Test
-    @DisplayName("")
-    void update_whenInvokeWithNonExistsWorkplace_thenThrowsException() {
-        workPlaceRepository.save(workplace);
-        Workplace updatedWorkplace = new Workplace(2, 4);
-
-        assertThatThrownBy(() -> workPlaceRepository.update(updatedWorkplace)).isInstanceOf(NoSuchElementException.class);
-    }
-
-    @Test
-    @DisplayName("")
-    void delete_whenInvokeWithValidWorkPlaceId_thenDeleteWorkplace() {
-        workPlaceRepository.save(workplace);
-
-        workPlaceRepository.delete(1);
-
-        List<Workplace> all = workPlaceRepository.getWorkplaces().values().stream().toList();
-
-        assertThat(all)
-                .isEmpty();
-    }
-
-    @Test
-    @DisplayName("")
-    void delete_whenInvokeWithInvalidWorkPlaceId_thenThrowsException() {
-        workPlaceRepository.save(workplace);
-
-        assertThatThrownBy(() -> workPlaceRepository.delete(2)).isInstanceOf(NoSuchElementException.class);
-    }
-
-    @Test
-    @DisplayName("")
-    void findAll_whenInvoke_then_returnListOfTwoWorkplaces() {
-        workPlaceRepository.save(workplace);
-        workPlaceRepository.save(new Workplace(2, 2));
-
-        List<Workplace> all = workPlaceRepository.getWorkplaces().values().stream().toList();
-
-        assertThat(all)
-                .hasSize(2);
-    }
-
-    @Test
-    @DisplayName("")
+    @Order(2)
+    @DisplayName("Проверка наличия рабочего места в БД по ID")
     void existsById_whenInvokeWithValidWorkPlaceId_thenReturnTrue() {
-        workPlaceRepository.save(workplace);
-
         boolean isWorkplaceExists = workPlaceRepository.existsById(1);
 
         assertThat(isWorkplaceExists)
@@ -132,13 +50,27 @@ class WorkPlaceRepositoryImplTest {
     }
 
     @Test
-    @DisplayName("")
+    @Order(3)
+    @DisplayName("Проверка наличия рабочего места в БД по несуществующему ID")
     void existsById_whenInvokeWithInvalidWorkPlaceId_thenReturnFalse() {
-        workPlaceRepository.save(workplace);
-
-        boolean isWorkplaceExists = workPlaceRepository.existsById(2);
+        boolean isWorkplaceExists = workPlaceRepository.existsById(5);
 
         assertThat(isWorkplaceExists)
                 .isFalse();
-    }*/
+    }
+
+    @Test
+    @Order(4)
+    @DisplayName("Найти все рабочие места - список из двух")
+    void findAll_whenInvoke_thenReturnListWithTwoElements() {
+        Workplace newWorkplace = Workplace.builder()
+                .floor(5)
+                .build();
+        workPlaceRepository.save(newWorkplace);
+        List<Workplace> all = workPlaceRepository.findAll();
+
+        assertThat(all)
+                .isNotEmpty()
+                .hasSize(2);
+    }
 }

@@ -47,7 +47,7 @@ class PrimaryMenuTest {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("Вызов метода регистрации юзера при выборе первого пункта меню")
     void handleUserAction_whenInvokeFirstMenuOption_thenThrowsException() {
         doThrow(NoSuchElementException.class).when(registrationService).registerUser();
 
@@ -58,7 +58,7 @@ class PrimaryMenuTest {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("Вызов метода авторизации юзера при выборе второго пункта меню")
     void handleUserAction_whenInvokeSecondMenuOption_thenThrowsException() {
         doThrow(NoSuchElementException.class).when(authenticationService).authenticateUser();
 
@@ -69,7 +69,7 @@ class PrimaryMenuTest {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("Вызов меню управления конференц-залами при выборе третьего пункта меню")
     void handleUserAction_whenInvokeThirdMenuOption_thenThrowsException() {
         when(authenticationService.checkAuthorizedUserExistence()).thenReturn(true);
         doThrow(NoSuchElementException.class).when(conferenceHallMenu).handleUserAction();
@@ -82,7 +82,7 @@ class PrimaryMenuTest {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("Вызов меню управления рабочими местами при выборе четвертого пункта меню")
     void handleUserAction_whenInvokeFourthMenuOption_thenThrowsException() {
         when(authenticationService.checkAuthorizedUserExistence()).thenReturn(true);
         doThrow(NoSuchElementException.class).when(workplaceMenu).handleUserAction();
@@ -95,7 +95,7 @@ class PrimaryMenuTest {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("Вызов меню управления бронью при выборе пятого пункта меню")
     void handleUserAction_whenInvokeFifthMenuOption_thenThrowsException() {
         when(authenticationService.checkAuthorizedUserExistence()).thenReturn(true);
         doThrow(NoSuchElementException.class).when(bookingMenu).handleUserAction();
@@ -108,7 +108,7 @@ class PrimaryMenuTest {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("Вызов метода выхода из приложения при выборе шестого пункта меню")
     void handleUserAction_whenInvokeSixthMenuOption_thenFinishProcess() {
         when(authenticationService.checkAuthorizedUserExistence()).thenReturn(true);
 

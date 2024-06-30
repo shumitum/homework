@@ -29,7 +29,7 @@ class WorkplaceMenuTest {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("Вызов метода создания рабочего места при выборе первого пункта меню")
     void handleUserAction_whenInvokeFirstMenuOption_thenThrowsException() {
         doThrow(NoSuchElementException.class).when(workPlaceService).createWorkplace();
 
@@ -40,7 +40,7 @@ class WorkplaceMenuTest {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("Вызов метода обновления данных рабочего места при выборе второго пункта меню")
     void handleUserAction_whenInvokeSecondMenuOption_thenThrowsException() {
         doThrow(NoSuchElementException.class).when(workPlaceService).updateWorkplace();
 
@@ -51,7 +51,7 @@ class WorkplaceMenuTest {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("Вызов метода удаления рабочего места при выборе третьего пункта меню")
     void handleUserAction_whenInvokeThirdMenuOption_thenThrowsException() {
         doThrow(NoSuchElementException.class).when(workPlaceService).deleteWorkplace();
 
@@ -62,7 +62,7 @@ class WorkplaceMenuTest {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("Вызов метода поиска всех рабочих мест при выборе четвертого пункта меню")
     void handleUserAction_whenInvokeFourthMenuOption_thenThrowsException() {
         doThrow(NoSuchElementException.class).when(workPlaceService).findAllWorkplaces();
 

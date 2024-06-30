@@ -4,8 +4,8 @@ import lombok.Setter;
 import org.example.booking.controller.ConferenceHallBookingController;
 import org.example.booking.controller.WorkplaceBookingController;
 import org.example.context.ApplicationContext;
-
-import java.util.Scanner;
+import org.example.in.UserInput;
+import org.example.out.Output;
 
 @Setter
 public class BookingMenu implements Menu {
@@ -24,8 +24,7 @@ public class BookingMenu implements Menu {
     public void handleUserAction() {
         while (true) {
             printCommonMenu();
-            Scanner scanner = new Scanner(System.in);
-            String command = scanner.next();
+            String command = UserInput.stringInput();
             switch (command.trim()) {
                 case "1" -> conferenceHallBookingController.createBooking();
                 case "2" -> workplaceBookingController.createBooking();
@@ -43,7 +42,7 @@ public class BookingMenu implements Menu {
                     return;
                 }
                 default ->
-                        System.out.println((char) 27 + "[31mИзвините, такой команды не существует." + (char) 27 + "[0m");
+                        Output.printMessage((char) 27 + "[31mИзвините, такой команды не существует." + (char) 27 + "[0m");
             }
         }
     }
