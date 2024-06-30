@@ -1,5 +1,6 @@
 package org.example.booking.controller;
 
+import lombok.Setter;
 import org.example.booking.BookingService;
 import org.example.booking.model.Booking;
 import org.example.booking.model.Slot;
@@ -11,16 +12,13 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
+@Setter
 public class ConferenceHallBookingController {
 
     private BookingService conferenceHallBookingService;
 
     public ConferenceHallBookingController() {
-        try {
-            this.conferenceHallBookingService = ApplicationContext.getInstance().getConferenceHallBookingService();
-        } catch (RuntimeException exc) {
-            Output.printMessage(exc.getMessage());
-        }
+        this.conferenceHallBookingService = ApplicationContext.getInstance().getConferenceHallBookingService();
     }
 
     public void createBooking() {

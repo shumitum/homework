@@ -1,5 +1,6 @@
 package org.example.booking.controller;
 
+import lombok.Setter;
 import org.example.booking.BookingService;
 import org.example.booking.model.Booking;
 import org.example.booking.model.Slot;
@@ -11,6 +12,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
+@Setter
 public class WorkplaceBookingController {
 
     private BookingService workplaceBookingService;
