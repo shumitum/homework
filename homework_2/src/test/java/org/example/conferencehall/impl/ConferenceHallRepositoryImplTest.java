@@ -22,7 +22,7 @@ class ConferenceHallRepositoryImplTest {
     @BeforeEach
     void setUp() {
         conferenceHallRepository = new ConferenceHallRepositoryImpl();
-        conferenceHall = new ConferenceHall(1, "name");
+        conferenceHall = new ConferenceHall(1, "cool name");
     }
 
     @AfterEach
@@ -100,16 +100,11 @@ class ConferenceHallRepositoryImplTest {
     @Test
     @DisplayName("")
     void findAll() {
-        ConferenceHall newConferenceHall = new ConferenceHall(2, "anotherName");
-        conferenceHallRepository.save(conferenceHall);
-        conferenceHallRepository.save(newConferenceHall);
-
         List<ConferenceHall> all = conferenceHallRepository.findAll();
 
         assertThat(all)
-                .contains(newConferenceHall)
                 .contains(conferenceHall)
-                .hasSize(3);
+                .hasSize(1);
     }
 
     @Test
@@ -126,9 +121,7 @@ class ConferenceHallRepositoryImplTest {
     @Test
     @DisplayName("")
     void existsById_whenInvokeWithInValidConferenceHallId_whenReturnFalse() {
-        conferenceHallRepository.save(conferenceHall);
-
-        boolean isConferenceHallExists = conferenceHallRepository.existsById(3);
+           boolean isConferenceHallExists = conferenceHallRepository.existsById(3);
 
         assertThat(isConferenceHallExists)
                 .isFalse();

@@ -20,5 +20,37 @@
             <column name="conference_hall_name" value="cool name"/>
         </insert>
 
+        <insert schemaName="data" tableName="bookings">
+            <column name="booking_date" value="2024-07-10"/>
+            <column name="slot" value="MORNING_SLOT"/>
+            <column name="place_type" value="CONFERENCE_HALL"/>
+            <column name="booker_name" value="qwe"/>
+            <column name="place_id" value="1"/>
+        </insert>
+
+        <insert schemaName="data" tableName="bookings">
+            <column name="booking_date" value="2024-07-11"/>
+            <column name="slot" value="AFTERNOON_SLOT"/>
+            <column name="place_type" value="CONFERENCE_HALL"/>
+            <column name="booker_name" value="qwe"/>
+            <column name="place_id" value="1"/>
+        </insert>
+
+        <insert schemaName="data" tableName="bookings">
+            <column name="booking_date" value="2024-07-12"/>
+            <column name="slot" value="MORNING_SLOT"/>
+            <column name="place_type" value="WORKPLACE"/>
+            <column name="booker_name" value="qwe"/>
+            <column name="place_id" value="1"/>
+        </insert>
+
+        <insert schemaName="data" tableName="bookings">
+            <column name="booking_date" value="2024-07-13"/>
+            <column name="slot" value="AFTERNOON_SLOT"/>
+            <column name="place_type" value="WORKPLACE"/>
+            <column name="booker_name" value="qwe"/>
+            <column name="place_id" value="1"/>
+        </insert>
+
     </changeSet>
 </databaseChangeLog>

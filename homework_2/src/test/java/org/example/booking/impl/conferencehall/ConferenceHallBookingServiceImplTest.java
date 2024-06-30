@@ -57,7 +57,7 @@ class ConferenceHallBookingServiceImplTest {
     }
 
     @Test
-    @DisplayName("Отменить бронирование")
+    @DisplayName("Отмена бронирования")
     void cancelBooking_whenInvoke_thenInvokeMethodsGetAuthorizedUserAndDeleteBooking() {
         when(authenticationService.getAuthorizedUser()).thenReturn(new User(1, "name", "123"));
         doNothing().when(conferenceHallBookingRepository).deleteBooking(1, "name");
@@ -70,7 +70,7 @@ class ConferenceHallBookingServiceImplTest {
     }
 
     @Test
-    @DisplayName("Найти свободные слоты на дату")
+    @DisplayName("Поиск свободных слотов на дату")
     void getAvailableSlotsByDate_whenInvoke_thenInvokeMethodsFindBookingByDateAndFindAll() {
         LocalDate date = LocalDate.of(2024, 7, 25);
         when(conferenceHallBookingRepository.findBookingByDate(date)).thenReturn(List.of(booking));
@@ -89,7 +89,7 @@ class ConferenceHallBookingServiceImplTest {
     }
 
     @Test
-    @DisplayName("найти все бронирования на определенную дату")
+    @DisplayName("Поиск всех бронирований на определенную дату")
     void getBookingsByDate_whenInvokeWithValidDate_thenInvokeFindBookingByDateMethodFromRepository() {
         LocalDate date = LocalDate.of(2024, 7, 25);
         when(conferenceHallBookingRepository.findBookingByDate(date)).thenReturn(List.of(new Booking()));
@@ -105,19 +105,22 @@ class ConferenceHallBookingServiceImplTest {
     }
 
     @Test
-    @DisplayName("")
-    void getBookingsByUserName_whenInvoke_thenInvokeFindBookingByUserNameFromRepository() {
+    @DisplayName("Поиск бронирований по имени бронировавшего")
+    void getBookingsByUserName_whenInvoke_thenReturnListOfBooking() {
         String name = "name";
         when(conferenceHallBookingRepository.findBookingByUserName(name)).thenReturn(List.of(new Booking()));
 
         System.setIn(new ByteArrayInputStream(name.getBytes()));
-        conferenceHallBookingService.getBookingsByUserName();
+        List<Booking> bookingsByUserName = conferenceHallBookingService.getBookingsByUserName();
 
         verify(conferenceHallBookingRepository, times(1)).findBookingByUserName(name);
+        assertThat(bookingsByUserName)
+                .hasSize(1)
+                .contains(new Booking());
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("Поиск всех бронирований")
     void getAllBookings_whenInvoke_thenReturnListOfBookings() {
         when(conferenceHallBookingRepository.findAllBookings()).thenReturn(List.of(new Booking()));
 
@@ -125,6 +128,7 @@ class ConferenceHallBookingServiceImplTest {
 
         verify(conferenceHallBookingRepository, times(1)).findAllBookings();
         assertThat(allBookings)
-                .hasSize(1);
+                .hasSize(1)
+                .contains(new Booking());
     }
 }
