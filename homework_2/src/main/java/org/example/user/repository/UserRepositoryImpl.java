@@ -27,7 +27,7 @@ public class UserRepositoryImpl implements UserRepository {
                 connection.commit();
                 Output.printMessage(String.format("Пользователь \"%s\" зарегистрирован%n", userName));
             } catch (SQLException e) {
-                System.out.println("Got SQL Exception in transaction " + e.getMessage());
+                Output.printMessage("Got SQL Exception in transaction " + e.getMessage());
             }
         } else {
             Output.printMessage(String.format("Пользователь \"%s\" уже зарегистрирован, выберете другое имя%n", userName));
@@ -51,7 +51,7 @@ public class UserRepositoryImpl implements UserRepository {
                 return Optional.of(user);
             }
         } catch (SQLException e) {
-            System.out.println("Got SQL Exception in transaction " + e.getMessage());
+            Output.printMessage("Got SQL Exception in transaction " + e.getMessage());
         }
         return Optional.empty();
     }

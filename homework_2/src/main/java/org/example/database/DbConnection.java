@@ -1,5 +1,6 @@
 package org.example.database;
 
+import org.example.out.Output;
 import org.example.properties.AppProperties;
 
 import java.sql.Connection;
@@ -19,7 +20,7 @@ public class DbConnection {
         try {
             connection = DriverManager.getConnection(URL, USER, PASSWORD);
         } catch (SQLException e) {
-            System.out.println("Got SQL Exception " + e.getMessage());
+            Output.printMessage("Got SQL Exception " + e.getMessage());
         }
         return connection;
     }

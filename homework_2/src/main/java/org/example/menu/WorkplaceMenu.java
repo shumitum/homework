@@ -34,11 +34,11 @@ public class WorkplaceMenu implements Menu {
     }
 
     private void printCommonMenu() {
-        System.out.println("-=Выберите действие=-");
-        System.out.println("1 - Создать рабочее место");
-        System.out.println("2 - Обновить данные рабочего места");
-        System.out.println("3 - Удалить рабочее место");
-        System.out.println("4 - Посмотреть все доступные рабочие места");
-        System.out.println("0 - Выйти в предыдущее меню");
+        Output.printMessage("-=Выберите действие=-");
+        Output.printMessage("1 - Создать рабочее место");
+        Output.printMessage("2 - Обновить данные рабочего места");
+        Output.printMessage("3 - Удалить рабочее место");
+        Output.printMessage("4 - Посмотреть все доступные рабочие места");
+        Output.printMessage("0 - Выйти в предыдущее меню");
     }
 }

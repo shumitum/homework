@@ -6,6 +6,7 @@ import liquibase.database.DatabaseFactory;
 import liquibase.database.jvm.JdbcConnection;
 import liquibase.exception.LiquibaseException;
 import liquibase.resource.ClassLoaderResourceAccessor;
+import org.example.out.Output;
 import org.example.properties.AppProperties;
 
 import java.sql.Connection;
@@ -27,9 +28,9 @@ public class DbPreparation {
                     new Liquibase(AppProperties.getProperty("liquibase.changelogPath"), new ClassLoaderResourceAccessor(), database);
             liquibase.update();
         } catch (LiquibaseException exc) {
-            System.out.println("SQL Exception in migration " + exc.getMessage());
+            Output.printMessage("SQL Exception in migration " + exc.getMessage());
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            Output.printMessage(e.getMessage());
         }
     }
 

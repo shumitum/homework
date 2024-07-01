@@ -12,27 +12,39 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Workplace Booking Controller предоставляет доступ к функционалу бронирования рабочих мест.
+ * Осуществляет вывод результата.
+ */
 @Setter
 public class WorkplaceBookingController {
 
+    /**
+     * Booking Service предоставляет функционалу для бронирования рабочих мест.
+     */
     private BookingService workplaceBookingService;
 
     public WorkplaceBookingController() {
         this.workplaceBookingService = ApplicationContext.getInstance().getWorkplaceBookingService();
     }
 
+    /**
+     * Создает новое бронирование рабочего места.
+     */
     public void createBooking() {
-        try {
-            workplaceBookingService.createBooking();
-        } catch (RuntimeException exc) {
-            Output.printMessage(exc.getMessage());
-        }
+        workplaceBookingService.createBooking();
     }
 
+    /**
+     * Отменяет существующее бронирование рабочего места.
+     */
     public void cancelBooking() {
         workplaceBookingService.cancelBooking();
     }
 
+    /**
+     * Позволяет получить свободные для бронирования слоты на конкретную дату.
+     */
     public void getAvailableSlotsByDate() {
         try {
             LocalDate date = UserInput.dateInput();
@@ -43,6 +55,9 @@ public class WorkplaceBookingController {
         }
     }
 
+    /**
+     * Позволяет получить список бронирований рабочих мест на конкретную дату.
+     */
     public void getBookingsByDate() {
         try {
             List<Booking> bookingsByDate = workplaceBookingService.getBookingsByDate();
@@ -52,11 +67,17 @@ public class WorkplaceBookingController {
         }
     }
 
+    /**
+     * Позволяет получить список бронирований рабочих мест по имени бронировавшего.
+     */
     public void getBookingsByUserName() {
         List<Booking> bookingsByUserName = workplaceBookingService.getBookingsByUserName();
         Output.printMessage(String.format("Брони рабочих мест пользователя: %s", bookingsByUserName));
     }
 
+    /**
+     * Позволяет получить список всех бронирований рабочих мест.
+     */
     public void getAllBookings() {
         List<Booking> bookings = workplaceBookingService.getAllBookings();
         Output.printMessage("Список всех бронирований рабочих мест: ");

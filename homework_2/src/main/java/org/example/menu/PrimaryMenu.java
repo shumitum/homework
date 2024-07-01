@@ -3,6 +3,7 @@ package org.example.menu;
 import lombok.Setter;
 import org.example.context.ApplicationContext;
 import org.example.in.UserInput;
+import org.example.out.Output;
 import org.example.user.service.AuthenticationService;
 import org.example.user.service.RegistrationService;
 
@@ -67,25 +68,25 @@ public class PrimaryMenu implements Menu {
     }
 
     private void printAuthMenu() {
-        System.out.println("-=Выберите действие=-");
-        System.out.printf("Текущий пользователь: %s%n", authenticationService.getAuthorizedUserName());
-        System.out.println("1 - Регистрация пользователя");
-        System.out.println("2 - Авторизация пользователя");
+        Output.printMessage("-=Выберите действие=-");
+        Output.printMessage("Текущий пользователь: " + authenticationService.getAuthorizedUserName());
+        Output.printMessage("1 - Регистрация пользователя");
+        Output.printMessage("2 - Авторизация пользователя");
         showAdditionalMenu();
     }
 
     private void showAdditionalMenu() {
         if (authenticationService.checkAuthorizedUserExistence()) {
-            System.out.println("3 - Меню управления конференц-залами");
-            System.out.println("4 - Меню управления рабочими местами");
-            System.out.println("5 - Меню управления бронью");
-            System.out.println("6 - Выйти из приложения");
+            Output.printMessage("3 - Меню управления конференц-залами");
+            Output.printMessage("4 - Меню управления рабочими местами");
+            Output.printMessage("5 - Меню управления бронью");
+            Output.printMessage("6 - Выйти из приложения");
         } else {
-            System.out.println("3 - Выйти из приложения");
+            Output.printMessage("3 - Выйти из приложения");
         }
     }
 
     private void printNoSuchCommand() {
-        System.out.println((char) 27 + "[31mИзвините, такой команды не существует." + (char) 27 + "[0m");
+        Output.printMessage((char) 27 + "[31mИзвините, такой команды не существует." + (char) 27 + "[0m");
     }
 }

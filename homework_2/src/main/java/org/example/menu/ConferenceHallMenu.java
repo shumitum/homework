@@ -34,12 +34,12 @@ public class ConferenceHallMenu implements Menu {
     }
 
     private void printCommonMenu() {
-        System.out.println("-=Выберите действие=-");
-        System.out.println("1 - Создать конференц-зал");
-        System.out.println("2 - Обновить данные конференц-зала");
-        System.out.println("3 - Удалить конференц-зал");
-        System.out.println("4 - Посмотреть все доступные конференц-залы");
-        System.out.println("0 - Выйти в предыдущее меню");
+        Output.printMessage("-=Выберите действие=-");
+        Output.printMessage("1 - Создать конференц-зал");
+        Output.printMessage("2 - Обновить данные конференц-зала");
+        Output.printMessage("3 - Удалить конференц-зал");
+        Output.printMessage("4 - Посмотреть все доступные конференц-залы");
+        Output.printMessage("0 - Выйти в предыдущее меню");
     }
 
 }

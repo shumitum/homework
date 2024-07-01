@@ -10,6 +10,7 @@ import org.example.context.ApplicationContext;
 import org.example.crud.CrudRepository;
 import org.example.exception.SlotValidationException;
 import org.example.in.UserInput;
+import org.example.out.Output;
 import org.example.user.service.AuthenticationService;
 import org.example.validation.TimeValidationService;
 import org.example.workplace.model.Workplace;
@@ -52,7 +53,7 @@ public class WorkplaceBookingServiceImpl implements BookingService {
                     .build();
             workplaceBookingRepository.save(booking);
         } catch (RuntimeException exc) {
-            System.out.println(exc.getMessage());
+            Output.printMessage(exc.getMessage());
         }
     }
 
@@ -63,7 +64,7 @@ public class WorkplaceBookingServiceImpl implements BookingService {
             String userName = authenticationService.getAuthorizedUser().getUserName();
             workplaceBookingRepository.deleteBooking(workplaceId, userName);
         } catch (InputMismatchException exc) {
-            System.out.println("ID рабочего места должен быть цифрой");
+            Output.printMessage("ID рабочего места должен быть цифрой");
         }
     }
 
@@ -89,7 +90,7 @@ public class WorkplaceBookingServiceImpl implements BookingService {
                 }
             }
         } catch (RuntimeException exc) {
-            System.out.println(exc.getMessage());
+            Output.printMessage(exc.getMessage());
         }
         return availableSlotsByPlaceId;
     }

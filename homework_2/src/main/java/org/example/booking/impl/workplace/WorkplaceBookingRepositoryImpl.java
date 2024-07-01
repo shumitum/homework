@@ -35,7 +35,7 @@ public class WorkplaceBookingRepositoryImpl implements BookingRepository {
                 Output.printMessage("Got SQL Exception in transaction " + e.getMessage());
             }
         } else {
-            System.out.println("Бронирование рабочего места is null, бронирование wasn't saved");
+            Output.printMessage("Бронирование рабочего места is null, бронирование wasn't saved");
         }
     }
 

@@ -11,6 +11,7 @@ import org.example.context.ApplicationContext;
 import org.example.crud.CrudRepository;
 import org.example.exception.SlotValidationException;
 import org.example.in.UserInput;
+import org.example.out.Output;
 import org.example.user.service.AuthenticationService;
 import org.example.validation.TimeValidationService;
 
@@ -52,7 +53,7 @@ public class ConferenceHallBookingServiceImpl implements BookingService {
                     .build();
             conferenceHallBookingRepository.save(booking);
         } catch (RuntimeException exc) {
-            System.out.println(exc.getMessage());
+            Output.printMessage(exc.getMessage());
         }
     }
 
@@ -63,7 +64,7 @@ public class ConferenceHallBookingServiceImpl implements BookingService {
             String userName = authenticationService.getAuthorizedUser().getUserName();
             conferenceHallBookingRepository.deleteBooking(conferenceHallId, userName);
         } catch (InputMismatchException exc) {
-            System.out.println("ID конференц-зала должен быть цифрой");
+            Output.printMessage("ID конференц-зала должен быть цифрой");
         }
     }
 
@@ -89,7 +90,7 @@ public class ConferenceHallBookingServiceImpl implements BookingService {
                 }
             }
         } catch (RuntimeException exc) {
-            System.out.println(exc.getMessage());
+            Output.printMessage(exc.getMessage());
         }
         return availableSlotsByPlaceId;
     }

@@ -1,5 +1,7 @@
 package org.example.properties;
 
+import org.example.out.Output;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -14,7 +16,7 @@ public class AppProperties {
         try (InputStream input = AppProperties.class.getClassLoader().getResourceAsStream("application.properties")) {
             properties.load(input);
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            Output.printMessage(e.getMessage());
         }
     }
 

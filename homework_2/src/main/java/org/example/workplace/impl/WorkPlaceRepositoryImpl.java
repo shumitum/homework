@@ -66,7 +66,7 @@ public class WorkPlaceRepositoryImpl implements CrudRepository<Workplace> {
                 preparedStatement.setInt(1, id);
                 preparedStatement.executeUpdate();
                 connection.commit();
-                System.out.println("Рабочее место was deleted");
+                Output.printMessage("Рабочее место was deleted");
             } catch (SQLException e) {
                 Output.printMessage("Got SQL Exception in transaction " + e.getMessage());
             }

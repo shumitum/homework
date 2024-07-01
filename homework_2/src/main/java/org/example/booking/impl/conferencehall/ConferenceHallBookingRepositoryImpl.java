@@ -35,7 +35,7 @@ public class ConferenceHallBookingRepositoryImpl implements BookingRepository {
                 Output.printMessage("Got SQL Exception in transaction " + e.getMessage());
             }
         } else {
-            System.out.println("Бронирование конференц-зала is null, бронирование wasn't saved");
+            Output.printMessage("Бронирование конференц-зала is null, бронирование wasn't saved");
         }
     }
 

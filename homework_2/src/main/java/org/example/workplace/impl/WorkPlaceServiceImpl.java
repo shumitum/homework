@@ -27,7 +27,7 @@ public class WorkPlaceServiceImpl implements WorkPlaceService {
             Integer floor = UserInput.digitInput("Введите этаж рабочего места:");
             workPlaceRepository.save(new Workplace(null, floor));
         } catch (InputMismatchException e) {
-            System.out.println("Этаж должен быть цифрой");
+            Output.printMessage("Этаж должен быть цифрой");
         }
     }
 
@@ -40,12 +40,12 @@ public class WorkPlaceServiceImpl implements WorkPlaceService {
                 Workplace workplace = new Workplace(placeId, floor);
                 workPlaceRepository.update(workplace);
             } catch (InputMismatchException e) {
-                System.out.println("Этаж должен быть цифрой");
+                Output.printMessage("Этаж должен быть цифрой");
             } catch (NoSuchElementException e) {
-                System.out.println(e.getMessage());
+                Output.printMessage(e.getMessage());
             }
         } catch (InputMismatchException e) {
-            System.out.println("ID рабочего места должен быть цифрой");
+            Output.printMessage("ID рабочего места должен быть цифрой");
         }
     }
 
@@ -55,9 +55,9 @@ public class WorkPlaceServiceImpl implements WorkPlaceService {
             Integer workplaceId = UserInput.digitInput("Введите ID удаляемого рабочего места:");
             workPlaceRepository.delete(workplaceId);
         } catch (InputMismatchException e) {
-            System.out.println("ID рабочего места должен быть цифрой");
+            Output.printMessage("ID рабочего места должен быть цифрой");
         } catch (NoSuchElementException e) {
-            System.out.println(e.getMessage());
+            Output.printMessage(e.getMessage());
         }
     }
 
